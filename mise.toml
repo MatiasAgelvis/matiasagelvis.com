@@ -1,0 +1,4 @@
+[tools]
+# The one tool that must match is pandoc (template/metadata behavior).
+# Python + packages are managed by uv via pyproject.toml (requires-python).
+pandoc = "3"

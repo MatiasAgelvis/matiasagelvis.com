@@ -1,0 +1,11 @@
+[project]
+name = "cv-site"
+version = "0.1.0"
+description = "Render cv.md to a static website and a single-page PDF"
+requires-python = ">=3.13"
+dependencies = [
+    "weasyprint",
+]
+
+[tool.uv]
+package = false
