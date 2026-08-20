@@ -134,6 +134,11 @@ lifting stays in pandoc (frontmatter → HTML) and WeasyPrint (HTML → PDF):
    single page.
 4. **Distribute:** copy `pdf/CV.pdf` → `site/cv/CV.pdf` so the site hosts the download.
 
+`make web` also copies `styles/web.css` → `site/web.css`, which the hand-written
+landing page links to (only its page-specific layout stays inline). Both pages
+share one stylesheet, so header/title sizes are identical; the back-to-home link
+on the CV page is hidden in print via `.no-print`.
+
 `--embed-resources` is not optional: without it, the stylesheet `<link>` resolves
 relative to the output file and WeasyPrint fails to load it (observed in the PoC).
 
@@ -240,9 +245,10 @@ If the environment is ever rebuilt: `brew install pango`.
 ```
 site/
 ├── index.html              # hand-written landing page (embeds Tally contact form)
+├── web.css                 # shared site stylesheet (copied by `make web`)
 ├── favicon.svg             # hand-written asset (optional)
 └── cv/
-    ├── index.html          # generated: longer HTML CV (web.css)
+    ├── index.html          # generated: longer HTML CV (web.css inlined)
     └── CV.pdf              # generated: single-page download
 ```
 
@@ -251,8 +257,9 @@ with **zero build steps**.
 
 **Self-containment rule:** nothing inside `site/` may reference a file outside it.
 The generated CV page inlines its styles via `--embed-resources`; the landing
-page carries its own `<style>` block. This keeps the whole directory directly
-uploadable with no path fixes.
+page links a shared `site/web.css` — a copy of `styles/web.css` produced by
+`make web` — plus a small inline override for landing-specific layout. This
+keeps the whole directory directly uploadable with no path fixes.
 
 ### `pdf/` — jobhunt output (subdir 2)
 
@@ -296,11 +303,10 @@ generated `site/` — but this is deliberately out of scope for v0.1.
 
 ## 10. Deployment
 
-Any static host pointed at `site/`. Candidates (no build step required):
-
-- **GitHub Pages** (already used for `cellsv`)
-- **Vercel** (already used)
-- **Netlify**
+Host: **Vercel**, pointed at `site/` — the domain `matiasagelvis.com` is already
+there (GitHub Pages was the original host, kept only for the separate `cellsv`
+project). Because `site/` is self-contained static files with no build step, any
+static host would work and Vercel needs no configuration.
 
 ## 11. Tally form
 
@@ -318,7 +324,8 @@ one-line edit in that file.
    config-driven mechanism).
 2. **PDF filename** — stable (`MatiasAgelvis-CV.pdf`) vs. date-stamped copies per
    jobhunt round (`MatiasAgelvis-CV-2026-08.pdf`). Affects `site/cv/` download URL.
-3. **Hosting** — GitHub Pages vs. Vercel vs. Netlify for `site/`.
+3. **Hosting — resolved:** Vercel at `matiasagelvis.com` (already hosted there;
+   GitHub Pages was the original host, now only `cellsv`).
 
 *(PDF engine is settled: pandoc → HTML → WeasyPrint. Whether pandoc drives WeasyPrint
 directly via `--pdf-engine` or `build.sh` calls it separately is an implementation detail.)*

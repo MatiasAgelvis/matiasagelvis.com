@@ -70,8 +70,9 @@ styles/web.css         # website styling
 styles/print.css       # single-page PDF styling
 site/                  # generated website — uploadable as-is, self-contained
 ├── index.html         # hand-written landing page (+ Tally contact form)
+├── web.css            # shared site stylesheet (copied by `make web`)
 └── cv/
-    ├── index.html     # generated longer HTML CV
+    ├── index.html     # generated longer HTML CV (styles inlined)
     └── CV.pdf         # generated single-page PDF (download)
 pdf/CV.pdf             # generated jobhunt PDF (source of the site copy)
 build/                 # scratch (intermediate print HTML)
@@ -93,25 +94,28 @@ build/                 # scratch (intermediate print HTML)
 6. **Print subset via `.no-print`.** If the CV grows past one page, wrap a section in
    `::: {.no-print}` … `::: ` to drop it from the PDF only; the website keeps
    everything. No config file, no second source — the marker travels with its content.
-7. **`site/` is self-contained.** Nothing inside it links outside itself (styles are
-   inlined via `--embed-resources`; the landing page carries its own CSS). The whole
-   directory uploads to any static host with zero build steps. Links use explicit filenames
-   (`cv/index.html`, not `cv/`) so navigation works from disk too.
+7. **`site/` is self-contained.** Nothing inside it links outside itself (the CV page
+   inlines its styles via `--embed-resources`; the landing page links a shared
+   `site/web.css` copied by `make web`). The whole directory uploads to any static
+   host with zero build steps. Links use explicit filenames (`cv/index.html`, not
+   `cv/`) so navigation works from disk too.
 8. **Tally form is code-free.** The contact form lives only on `site/index.html`
    (block id `A76LDN`). Swap it by editing that one iframe.
 9. **No pipx / uvx / global installs.** Pandoc comes from `mise`; Python + WeasyPrint
    live in `.venv`. The only machine-level thing is the base toolchain (mise, uv, pango).
 
-## Deploying (optional)
+## Deploying
 
-`site/` is plain static files. Point GitHub Pages, Vercel, or Netlify at `site/`;
-no build step. The generated files are committed on purpose, so a push is a deploy.
+Host: **Vercel**, pointed at `site/` — the domain `matiasagelvis.com` already
+lives there (GitHub Pages was the original host, now used only for the separate
+`cellsv` project). `site/` is
+self-contained static files with no build step, so Vercel needs no configuration
+— push to deploy.
 
 ## Open items
 
 - **PDF filename** — currently `CV.pdf` everywhere (dropping the `download` hint on the
   landing link aside). Date-stamped copies per jobhunt round are an option.
-- **Hosting** — deferred until publishing.
 
 ## See also
 
