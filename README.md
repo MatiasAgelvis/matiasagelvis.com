@@ -110,7 +110,9 @@ Host: **Vercel**, pointed at `site/` — the domain `matiasagelvis.com` already
 lives there (GitHub Pages was the original host, now used only for the separate
 `cellsv` project). `site/` is
 self-contained static files with no build step, so Vercel needs no configuration
-— push to deploy.
+— push to deploy. `vercel.json` sets `outputDirectory: "site"` and no build
+command, because the generated `site/` is committed (build happens locally via
+`make`).
 
 ## Open items
 
