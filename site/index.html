@@ -5,32 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Software engineer and physicist specializing in Python backend development, API design, data processing, and optimization." />
   <title>Matias Agelvis — Software Engineer</title>
+  <link rel="stylesheet" href="web.css" />
   <style>
-    :root { color-scheme: light; }
-    * { box-sizing: border-box; }
-    body {
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      margin: 0;
-      padding: 3rem 1.25rem 4rem;
-      color: #1f2328;
-      line-height: 1.6;
-    }
-    main { max-width: 40rem; margin: 0 auto; }
-    header { text-align: center; margin-bottom: 2.5rem; }
-    h1 { font-size: 2.6rem; margin: 0 0 0.25rem; }
-    .subtitle { font-size: 1.15rem; font-weight: 600; color: #57606a; margin: 0 0 0.5rem; }
-    .meta { color: #57606a; font-size: 0.95rem; margin: 0; }
-    .meta a { color: #0969da; text-decoration: none; }
+    /* landing-page-only overrides on top of the shared site.css/web.css */
+    body { max-width: 40rem; }
+    header.contact { margin-bottom: 2.5rem; }
     .tagline { margin: 1.2rem auto 0; max-width: 34rem; color: #333; }
     section { margin: 2.5rem 0; }
-    h2 {
-      font-size: 1.05rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #57606a;
-      border-bottom: 2px solid #d0d7de;
-      padding-bottom: 0.35rem;
-    }
     .cards { display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
     .card {
       flex: 1 1 12rem;
@@ -50,7 +31,7 @@
 </head>
 <body>
   <main>
-    <header>
+    <header class="contact">
       <h1>Matias Agelvis</h1>
       <p class="subtitle">Software Engineer · Bordeaux, France</p>
       <p class="meta">
