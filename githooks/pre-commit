@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+# Pre-commit hook: rebuild the site + PDF and fold the fresh outputs into the
+# commit, so committed `site/` and `pdf/` can never go stale.
+#
+# Runs from the repository root (git sets the hook's working directory there).
+# If `make` fails — e.g. the PDF overflows one page — the commit is aborted.
+
+set -e
+
+make
+
+git add site/ pdf/
