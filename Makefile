@@ -9,7 +9,10 @@
 .PHONY: all web pdf serve clean
 all: web pdf
 
-web: site/cv/index.html
+web: site/cv/index.html site/web.css
+
+site/web.css: styles/web.css
+	cp styles/web.css $@
 
 pdf: pdf/CV.pdf site/cv/CV.pdf
 
