@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="$lang$">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,12 +8,19 @@
 $for(css)$<link rel="stylesheet" href="$css$" />$endfor$
 </head>
 <body>
-  <nav class="back no-print"><a href="../index.html">← back to home</a></nav>
+  <nav class="top-nav no-print">
+    <a href="$back-url$">← back to home</a>
+    <span class="lang-picker">
+      <a href="/cv/"$if(en-active)$ class="active"$endif$>EN</a>
+      <a href="/fr/cv/"$if(fr-active)$ class="active"$endif$>FR</a>
+    </span>
+  </nav>
   <header class="contact">
     <h1>$name$</h1>
     <p class="subtitle">$title$ · $location$</p>
     <p class="meta"><a href="https://$website$">$website$</a> · <a href="https://$github$">$github$</a> · <a href="$linkedin$">LinkedIn</a></p>
   </header>
+  <p class="download no-print"><a href="CV.pdf" download>$download-text$</a></p>
   <main>
     $body$
   </main>
