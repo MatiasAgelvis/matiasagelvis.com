@@ -30,7 +30,8 @@ Ingénieur logiciel et physicien spécialisé en développement backend Python, 
 
 - Développement et maintenance de services backend Python/FastAPI en production pour un projet bancaire.
 - Conception d'APIs REST asynchrones, de middlewares d'authentification et d'autorisation, et de services communiquant via RabbitMQ.
-- Développement de couches de persistance multi-bases avec PostgreSQL.
+- Développement de couches de persistance multi-bases avec PostgreSQL et SQLAlchemy.
+- Développement et maintenance de tests automatisés avec pytest, ainsi que de tests d'intégration.
 - Refonte d'une intégration FIX 4.2 sur TCP en remplaçant l'ensemble du code existant : gestion des messages, sessions, reconnexion, abonnements, cache et tests d'intégration.
 - Développement d'algorithmes de traitement de données et d'optimisation, avec une attention portée à la performance, la robustesse et la fiabilité.
 
