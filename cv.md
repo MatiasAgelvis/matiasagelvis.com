@@ -27,11 +27,11 @@ Software engineer and physicist specializing in Python backend development, API 
 ## SNAPP' — Python Backend Engineer (Contractor)
 *Feb 2025 – Mar 2026*
 
-- Developed production backend services for a banking project using Python and FastAPI.
-- Designed asynchronous REST APIs, service-to-service communication, and custom authentication/authorization middleware.
+- Developed and maintained production backend services for a banking project using Python/FastAPI.
+- Designed asynchronous REST APIs, authentication/authorization middleware, and services communicating via RabbitMQ.
 - Built multi-database persistence layers with PostgreSQL.
-- Implemented RabbitMQ-backed RPC messaging infrastructure.
-- Developed data-processing and optimization algorithms with a focus on performance and reliability.
+- Redesigned a FIX 4.2 integration over TCP, replacing all existing code: message handling, sessions, reconnection, subscriptions, caching, and integration testing.
+- Developed data-processing and optimization algorithms with a focus on performance, robustness, and reliability.
 
 ## SIAL — Laboratory Technician
 *Mar 2024 – Mar 2025*

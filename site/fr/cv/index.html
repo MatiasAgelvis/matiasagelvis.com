@@ -109,48 +109,35 @@ font-size: 0.85rem;
     </ul>
     <h2 id="snapp-ingénieur-backend-python-contractuel">SNAPP’ —
     Ingénieur Backend Python (Contractuel)</h2>
-    <p><em>Fév 2025 – Mar 2026</em></p>
+    <p><em>Fév. 2025 – Mar. 2026</em></p>
     <ul>
-    <li>Développement de services backend Python/FastAPI en production
-    pour un projet bancaire.</li>
-    <li>Conception d’APIs REST asynchrones, de communication
-    inter-services et de middlewares d’authentification et
-    d’autorisation personnalisés.</li>
-    <li>Construction de couches de persistance multi-bases avec
+    <li>Développement et maintenance de services backend Python/FastAPI
+    en production pour un projet bancaire.</li>
+    <li>Conception d’APIs REST asynchrones, de middlewares
+    d’authentification et d’autorisation, et de services communiquant
+    via RabbitMQ.</li>
+    <li>Développement de couches de persistance multi-bases avec
     PostgreSQL.</li>
-    <li>Mise en place d’une infrastructure de communication RPC basée
-    sur RabbitMQ.</li>
+    <li>Refonte d’une intégration FIX 4.2 sur TCP en remplaçant
+    l’ensemble du code existant : gestion des messages, sessions,
+    reconnexion, abonnements, cache et tests d’intégration.</li>
     <li>Développement d’algorithmes de traitement de données et
-    d’optimisation axés sur la performance et la fiabilité.</li>
+    d’optimisation, avec une attention portée à la performance, la
+    robustesse et la fiabilité.</li>
     </ul>
     <h2 id="sial-technicien-de-laboratoire">SIAL — Technicien de
     Laboratoire</h2>
     <p><em>Mar 2024 – Mar 2025</em></p>
     <ul>
-    <li>Réalisation d’analyses de laboratoire et préparation
-    d’échantillons selon les procédures et exigences de sécurité
-    établies.</li>
-    <li>Gestion des données expérimentales, des enregistrements, de la
-    logistique et de l’équipement.</li>
+    <li>Analyses en laboratoire, gestion des données expérimentales et
+    de la logistique.</li>
     </ul>
     <h2 id="développeur-logiciel-indépendant">Développeur Logiciel
     Indépendant</h2>
     <p><em>Oct 2022 – Mar 2024</em></p>
     <ul>
-    <li>Développement et déploiement de projets logiciels indépendants
-    dans le cadre de la recherche d’opportunités en ingénierie
-    logicielle.</li>
-    <li>Conception de backends, APIs, applications web et outils
-    logiciels selon les besoins des projets.</li>
-    </ul>
-    <h2 id="développeur-frontend-télétravail">Développeur Frontend —
-    Télétravail</h2>
-    <p><em>Mar 2022 – Oct 2022</em></p>
-    <ul>
-    <li>Développement de fonctionnalités d’applications web réactives
-    avec React, Next.js, TypeScript et Chakra UI.</li>
-    <li>Conception de composants UI réutilisables et amélioration de la
-    compatibilité multi-navigateurs et des performances.</li>
+    <li>Conception et déploiement de backends, APIs et applications web
+    selon les besoins des projets.</li>
     </ul>
     <h1 id="formation">Formation</h1>
     <h2 id="universidad-de-los-andes-b.sc.-physique">Universidad de los
@@ -178,6 +165,37 @@ font-size: 0.85rem;
     <p><a href="https://kumigi.vercel.app"><strong>Kumigi</strong></a> —
     Créateur d’avatars web</p>
   </main>
-<script src="https://cdn.counter.dev/script.js" data-id="0de1bf3d-1d12-4011-bf4d-485bfe73d701" data-utcoffset="2"></script>
+<script data-id="0de1bf3d-1d12-4011-bf4d-485bfe73d701" data-utcoffset="2">(function () {
+    if (sessionStorage.getItem("doNotTrack") || localStorage.getItem("doNotTrack")) {
+        return;
+    }
+    var id = document.currentScript.getAttribute("data-id");
+    var utcoffset = document.currentScript.getAttribute("data-utcoffset");
+    var server = document.currentScript.getAttribute("data-server") || "https://t.counter.dev";
+
+    if (!sessionStorage.getItem("_swa") && !document.referrer.startsWith(location.protocol + "//" + location.host)) {
+        setTimeout(function () {
+            sessionStorage.setItem("_swa", "1");
+            fetch(
+                server +
+                    "/track?" +
+                    new URLSearchParams({
+                        referrer: document.referrer,
+                        screen: screen.width + "x" + screen.height,
+                        id: id,
+                        utcoffset: utcoffset,
+                    }),
+            );
+        }, 4500);
+    }
+    navigator.sendBeacon(
+        server + "/trackpage",
+        new URLSearchParams({
+            id: id,
+            page: window.location.pathname,
+        }),
+    );
+})();
+</script>
 </body>
 </html>

@@ -110,15 +110,16 @@ font-size: 0.85rem;
     Backend Engineer (Contractor)</h2>
     <p><em>Feb 2025 – Mar 2026</em></p>
     <ul>
-    <li>Developed production backend services for a banking project
-    using Python and FastAPI.</li>
-    <li>Designed asynchronous REST APIs, service-to-service
-    communication, and custom authentication/authorization
-    middleware.</li>
+    <li>Developed and maintained production backend services for a
+    banking project using Python/FastAPI.</li>
+    <li>Designed asynchronous REST APIs, authentication/authorization
+    middleware, and services communicating via RabbitMQ.</li>
     <li>Built multi-database persistence layers with PostgreSQL.</li>
-    <li>Implemented RabbitMQ-backed RPC messaging infrastructure.</li>
+    <li>Redesigned a FIX 4.2 integration over TCP, replacing all
+    existing code: message handling, sessions, reconnection,
+    subscriptions, caching, and integration testing.</li>
     <li>Developed data-processing and optimization algorithms with a
-    focus on performance and reliability.</li>
+    focus on performance, robustness, and reliability.</li>
     </ul>
     <h2 id="sial-laboratory-technician">SIAL — Laboratory
     Technician</h2>
@@ -168,6 +169,37 @@ font-size: 0.85rem;
     <p><a href="https://kumigi.vercel.app"><strong>Kumigi</strong></a> —
     Web-based avatar designer</p>
   </main>
-<script src="https://cdn.counter.dev/script.js" data-id="0de1bf3d-1d12-4011-bf4d-485bfe73d701" data-utcoffset="2"></script>
+<script data-id="0de1bf3d-1d12-4011-bf4d-485bfe73d701" data-utcoffset="2">(function () {
+    if (sessionStorage.getItem("doNotTrack") || localStorage.getItem("doNotTrack")) {
+        return;
+    }
+    var id = document.currentScript.getAttribute("data-id");
+    var utcoffset = document.currentScript.getAttribute("data-utcoffset");
+    var server = document.currentScript.getAttribute("data-server") || "https://t.counter.dev";
+
+    if (!sessionStorage.getItem("_swa") && !document.referrer.startsWith(location.protocol + "//" + location.host)) {
+        setTimeout(function () {
+            sessionStorage.setItem("_swa", "1");
+            fetch(
+                server +
+                    "/track?" +
+                    new URLSearchParams({
+                        referrer: document.referrer,
+                        screen: screen.width + "x" + screen.height,
+                        id: id,
+                        utcoffset: utcoffset,
+                    }),
+            );
+        }, 4500);
+    }
+    navigator.sendBeacon(
+        server + "/trackpage",
+        new URLSearchParams({
+            id: id,
+            page: window.location.pathname,
+        }),
+    );
+})();
+</script>
 </body>
 </html>

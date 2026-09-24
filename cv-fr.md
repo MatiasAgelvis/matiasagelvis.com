@@ -26,31 +26,23 @@ Ingénieur logiciel et physicien spécialisé en développement backend Python, 
 - Conception de simulations, analyses et workflows logiciels pour traduire des contraintes opérationnelles en solutions exploitables.
 
 ## SNAPP' — Ingénieur Backend Python (Contractuel)
-*Fév 2025 – Mar 2026*
+*Fév. 2025 – Mar. 2026*
 
-- Développement de services backend Python/FastAPI en production pour un projet bancaire.
-- Conception d'APIs REST asynchrones, de communication inter-services et de middlewares d'authentification et d'autorisation personnalisés.
-- Construction de couches de persistance multi-bases avec PostgreSQL.
-- Mise en place d'une infrastructure de communication RPC basée sur RabbitMQ.
-- Développement d'algorithmes de traitement de données et d'optimisation axés sur la performance et la fiabilité.
+- Développement et maintenance de services backend Python/FastAPI en production pour un projet bancaire.
+- Conception d'APIs REST asynchrones, de middlewares d'authentification et d'autorisation, et de services communiquant via RabbitMQ.
+- Développement de couches de persistance multi-bases avec PostgreSQL.
+- Refonte d'une intégration FIX 4.2 sur TCP en remplaçant l'ensemble du code existant : gestion des messages, sessions, reconnexion, abonnements, cache et tests d'intégration.
+- Développement d'algorithmes de traitement de données et d'optimisation, avec une attention portée à la performance, la robustesse et la fiabilité.
 
 ## SIAL — Technicien de Laboratoire
 *Mar 2024 – Mar 2025*
 
-- Réalisation d'analyses de laboratoire et préparation d'échantillons selon les procédures et exigences de sécurité établies.
-- Gestion des données expérimentales, des enregistrements, de la logistique et de l'équipement.
+- Analyses en laboratoire, gestion des données expérimentales et de la logistique.
 
 ## Développeur Logiciel Indépendant
 *Oct 2022 – Mar 2024*
 
-- Développement et déploiement de projets logiciels indépendants dans le cadre de la recherche d'opportunités en ingénierie logicielle.
-- Conception de backends, APIs, applications web et outils logiciels selon les besoins des projets.
-
-## Développeur Frontend — Télétravail
-*Mar 2022 – Oct 2022*
-
-- Développement de fonctionnalités d'applications web réactives avec React, Next.js, TypeScript et Chakra UI.
-- Conception de composants UI réutilisables et amélioration de la compatibilité multi-navigateurs et des performances.
+- Conception et déploiement de backends, APIs et applications web selon les besoins des projets.
 
 # Formation
 
