@@ -71,3 +71,5 @@ Formation en dynamique non linéaire, théorie du chaos, modélisation mathémat
 [**Significado Total**](https://semioteca.vercel.app) — Application de recherche linguistique construite avec Python et Svelte
 
 [**Kumigi**](https://kumigi.vercel.app) — Créateur d'avatars web
+
+[**Warkdown-98**](https://matiasagelvis.github.io/Warkdown-98/) — Éditeur de markdown style Windows 98 fonctionnant dans le navigateur, construit avec React et Vite

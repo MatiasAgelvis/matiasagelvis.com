@@ -76,3 +76,5 @@ Background in nonlinear dynamics, chaos theory, mathematical modeling, and compu
 [**Significado Total**](https://semioteca.vercel.app) — Linguistics research application built with Python and Svelte
 
 [**Kumigi**](https://kumigi.vercel.app) — Web-based avatar designer
+
+[**Warkdown-98**](https://matiasagelvis.github.io/Warkdown-98/) — Windows 98-themed markdown editor running in the browser, built with React and Vite
