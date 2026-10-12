@@ -1,5 +1,5 @@
 ---
-name: Matias Agelvis
+name: Matías Agelvis
 title: Ingénieur Logiciel
 location: Bordeaux, France
 website: matiasagelvis.com
