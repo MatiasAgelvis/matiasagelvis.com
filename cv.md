@@ -7,6 +7,7 @@ github: github.com/MatiasAgelvis
 description: Software engineer and physicist specializing in Python backend development, API design, data processing, and optimization.
 url: https://matiasagelvis.com
 linkedin: https://www.linkedin.com/in/matias-agelvis/
+email: cv@matiasagelvis.com
 back-url: ../index.html
 download-text: "⬇ Download PDF"
 ---

@@ -7,6 +7,7 @@ github: github.com/MatiasAgelvis
 description: Ingénieur logiciel et physicien spécialisé en développement backend Python, systèmes distribués et optimisation.
 url: https://matiasagelvis.com
 linkedin: https://www.linkedin.com/in/matias-agelvis/
+email: cv@matiasagelvis.com
 lang: fr
 back-url: ../../index.html
 download-text: "⬇ Télécharger le PDF"
