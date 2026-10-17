@@ -47,7 +47,7 @@ Ingénieur logiciel et physicien spécialisé en développement backend Python, 
 
 # Formation
 
-## Universidad de los Andes — B.Sc. Physique
+## Universidad de los Andes — B.Sc. Physique (cum laude)
 *Mérida, Venezuela*
 
 Formation en dynamique non linéaire, théorie du chaos, modélisation mathématique et méthodes computationnelles.
@@ -64,11 +64,11 @@ Formation en dynamique non linéaire, théorie du chaos, modélisation mathémat
 
 # Projets Sélectionnés
 
+[**Significado Total**](https://semioteca.vercel.app) — Application de recherche linguistique construite avec Python et Svelte
+
 [**OmegaInt**](https://github.com/matiasagelvis/omegaint) — Bibliothèque C++ d'entiers à précision arbitraire
 
 [**CellSV**](https://matiasagelvis.github.io/cellsv) — Outil haute performance de conversion XML → CSV
-
-[**Significado Total**](https://semioteca.vercel.app) — Application de recherche linguistique construite avec Python et Svelte
 
 [**Kumigi**](https://kumigi.vercel.app) — Créateur d'avatars web
 

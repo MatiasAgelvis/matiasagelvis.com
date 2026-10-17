@@ -54,7 +54,7 @@ Software engineer and physicist specializing in Python backend development, API 
 
 # Education
 
-## Universidad de los Andes — B.Sc. Physics
+## Universidad de los Andes — B.Sc. Physics (cum laude)
 *Mérida, Venezuela*
 
 Background in nonlinear dynamics, chaos theory, mathematical modeling, and computational methods.
