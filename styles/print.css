@@ -1,7 +1,7 @@
 /* PoC print stylesheet — aggressive single-page A4 */
 @page {
   size: A4;
-  margin: 9mm 11mm;
+  margin: 9mm 14mm;
 }
 
 body {
