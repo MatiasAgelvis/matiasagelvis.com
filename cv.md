@@ -8,6 +8,8 @@ description: Software engineer and physicist specializing in Python backend deve
 url: https://matiasagelvis.com
 linkedin: https://www.linkedin.com/in/matias-agelvis/
 email: cv@matiasagelvis.com
+phone: "+33 7 65 65 54 73"
+phone-href: "+33765655473"
 back-url: ../index.html
 download-text: "⬇ Download PDF"
 ---
