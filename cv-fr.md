@@ -30,12 +30,10 @@ Ingénieur logiciel et physicien spécialisé en développement backend Python, 
 ## SNAPP' — Ingénieur Backend Python (Contractuel)
 *Fév. 2025 – Mar. 2026*
 
-- Responsable de la couche d'authentification et d'autorisation d'une plateforme bancaire : sessions JWT, contrôle d'accès par rôles (20 rôles, 135 permissions) et 2FA multi-canal (TOTP, OTP par SMS et e-mail) avec verrouillage des connexions.
+- Responsable de la couche d'authentification et d'autorisation d'une plateforme bancaire : sessions JWT, contrôle d'accès par rôles (20 rôles, 135 permissions) et 2FA multi-canal avec verrouillage des connexions.
 - Refonte complète de l'intégration FIX 4.2 : codec du protocole, transport WebSocket, gestion des sessions, reconnexion avec réabonnement, et exposition de l'état des paires FX via un endpoint HTTP.
-- Conception d'APIs REST asynchrones et de middlewares d'authentification et d'autorisation ; services communiquant via RabbitMQ RPC.
-- Co-conception du moteur de traitement des demandes : workflows typés, cycle de vie à 8 états, audit, documents et messagerie interne.
-- Persistance multi-bases sur trois bases MySQL avec SQLAlchemy et Alembic.
-- Développement et maintenance de tests automatisés avec pytest, dont des tests d'intégration.
+- Conception d'APIs REST asynchrones FastAPI et de middlewares d'authentification, services communiquant via RabbitMQ RPC, sur trois bases MySQL (SQLAlchemy, Alembic) avec suite de tests pytest.
+- Co-conception du moteur de traitement des demandes : workflows typés, audit, documents et messagerie interne.
 
 ## SIAL — Technicien de Laboratoire
 *Mar 2024 – Mar 2025*
@@ -52,7 +50,7 @@ Ingénieur logiciel et physicien spécialisé en développement backend Python, 
 ## Universidad de los Andes — B.Sc. Physique (cum laude)
 *Mérida, Venezuela — 2018*
 
-Formation en modélisation mathématique et méthodes computationnelles. Passage vers l'ingénierie logicielle via ~70 cours d'informatique en autodidacte : algorithmique, structures de données, architecture, langages de programmation et compilateurs.
+Formation en modélisation mathématique et méthodes computationnelles ; passage vers l'ingénierie logicielle via plus de 70 cours en autodidacte : algorithmique, architecture, compilateurs, optimisation discrète et machine learning.
 
 # Compétences
 

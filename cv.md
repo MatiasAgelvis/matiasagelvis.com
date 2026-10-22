@@ -29,12 +29,10 @@ Software engineer and physicist specializing in Python backend development, API 
 ## SNAPP' — Python Backend Engineer (Contractor)
 *Feb 2025 – Mar 2026*
 
-- Owned the identity and access layer of a banking platform: JWT sessions, role-based access control (20 roles, 135 permissions), and multi-channel 2FA (TOTP, SMS and email OTP) with login lockout.
-- Rebuilt the FIX 4.2 integration end to end — protocol codec, WebSocket transport, session lifecycle, reconnection with resubscription — and exposed live FX pair state over an HTTP endpoint.
-- Designed asynchronous REST APIs and authentication/authorization middleware; services communicate via RabbitMQ RPC.
-- Co-built the request-processing engine: typed workflows, 8-state lifecycle, audit trail, documents, and internal messaging.
-- Built persistence across three MySQL databases with SQLAlchemy and Alembic.
-- Developed and maintained automated tests with pytest, including integration tests.
+- Owned the identity and access layer of a banking platform: JWT sessions, role-based access control (20 roles, 135 permissions), and multi-channel 2FA with login lockout.
+- Rebuilt the FIX 4.2 integration end to end — protocol codec, WebSocket transport, session lifecycle, reconnection with resubscription — and served live FX pair state over HTTP.
+- Designed asynchronous FastAPI REST services and authentication/authorization middleware over RabbitMQ RPC, backed by three MySQL databases (SQLAlchemy, Alembic) and a pytest suite.
+- Co-built the request-processing engine: typed workflows, audit trail, documents, and internal messaging.
 
 ## SIAL — Laboratory Technician
 *Mar 2024 – Mar 2025*
@@ -56,7 +54,7 @@ Software engineer and physicist specializing in Python backend development, API 
 ## Universidad de los Andes — B.Sc. Physics (cum laude)
 *Mérida, Venezuela — 2018*
 
-Background in mathematical modeling and computational methods. Moved into software engineering through ~70 self-directed computer science courses: algorithms, data structures, computer architecture, programming languages, and compilers.
+Background in mathematical modeling and computational methods; moved into software engineering through 70+ self-directed courses in algorithms, architecture, compilers, discrete optimization, and machine learning.
 
 # Skills
 
