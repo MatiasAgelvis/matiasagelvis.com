@@ -23,11 +23,11 @@ site/web.css: styles/web.css
 
 site/cv/index.html: cv.md templates/cv.html styles/web.css
 	@mkdir -p $(dir $@)
-	pandoc cv.md --template templates/cv.html --css styles/web.css --embed-resources -V en-active=true -V 'download-text=⬇ Download PDF' -o $@
+	pandoc cv.md --template templates/cv.html --css styles/web.css --embed-resources -V en-active=true -V 'en-href=index.html' -V 'fr-href=../fr/cv/index.html' -V 'download-text=⬇ Download PDF' -o $@
 
 build/cv-print.html: cv.md templates/cv.html styles/print.css
 	@mkdir -p $(dir $@)
-	pandoc cv.md --template templates/cv.html --css styles/print.css --embed-resources -V en-active=true -o $@
+	pandoc cv.md --template templates/cv.html --css styles/print.css --embed-resources -V en-active=true -V 'en-href=index.html' -V 'fr-href=../fr/cv/index.html' -o $@
 
 pdf/CV.pdf: build/cv-print.html
 	@mkdir -p pdf
@@ -44,11 +44,11 @@ pdf-fr: pdf/CV-fr.pdf site/fr/cv/CV.pdf
 
 site/fr/cv/index.html: cv-fr.md templates/cv.html styles/web.css
 	@mkdir -p $(dir $@)
-	pandoc cv-fr.md --template templates/cv.html --css styles/web.css --embed-resources -V fr-active=true -V 'download-text=⬇ Télécharger le PDF' -o $@
+	pandoc cv-fr.md --template templates/cv.html --css styles/web.css --embed-resources -V fr-active=true -V 'en-href=../../cv/index.html' -V 'fr-href=index.html' -V 'download-text=⬇ Télécharger le PDF' -o $@
 
 build/fr-cv-print.html: cv-fr.md templates/cv.html styles/print.css
 	@mkdir -p $(dir $@)
-	pandoc cv-fr.md --template templates/cv.html --css styles/print.css --embed-resources -V fr-active=true -o $@
+	pandoc cv-fr.md --template templates/cv.html --css styles/print.css --embed-resources -V fr-active=true -V 'en-href=../../cv/index.html' -V 'fr-href=index.html' -o $@
 
 pdf/CV-fr.pdf: build/fr-cv-print.html
 	uv run python build_pdf.py build/fr-cv-print.html pdf/CV-fr.pdf

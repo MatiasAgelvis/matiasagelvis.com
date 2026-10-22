@@ -24,13 +24,21 @@ ul { margin: 0.3rem 0 1rem; }
 
 /* ---- shared contact header (landing page + CV page) ---- */
 header.contact { text-align: center; margin-bottom: 2rem; }
-header.contact h1 { font-size: 2.5rem; margin: 0 0 0.25rem; }
+header.contact h1 {
+  font-size: 2.5rem;
+  margin: 0 0 0.25rem;
+  color: #1f2328;
+  text-transform: none;
+  letter-spacing: normal;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
 header.contact .subtitle { font-size: 1.15rem; font-weight: 600; color: #57606a; margin: 0 0 0.4rem; }
 header.contact .meta { color: #57606a; font-size: 0.95rem; margin: 0; text-wrap: balance; }
 header.contact .meta a { color: #0969da; text-decoration: none; white-space: nowrap; }
 
 /* ---- section headings: CV major sections (main h1) + landing sections (section h2) ---- */
-main h1,
+main > h1,
 section h2 {
   font-size: 1.15rem;
   text-transform: uppercase;

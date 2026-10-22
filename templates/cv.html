@@ -11,8 +11,8 @@ $for(css)$<link rel="stylesheet" href="$css$" />$endfor$
   <nav class="top-nav no-print">
     <a href="$back-url$">← back to home</a>
     <span class="lang-picker">
-      <a href="/cv/"$if(en-active)$ class="active"$endif$>EN</a>
-      <a href="/fr/cv/"$if(fr-active)$ class="active"$endif$>FR</a>
+      <a href="$en-href$" hreflang="en"$if(en-active)$ class="active"$endif$>EN</a>
+      <a href="$fr-href$" hreflang="fr"$if(fr-active)$ class="active"$endif$>FR</a>
     </span>
   </nav>
   <header class="contact">
