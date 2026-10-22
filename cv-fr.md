@@ -17,26 +17,25 @@ download-text: "⬇ Télécharger le PDF"
 
 # Résumé
 
-Ingénieur logiciel et physicien spécialisé en développement backend Python, systèmes distribués et optimisation. Expérience en production avec FastAPI, PostgreSQL, RabbitMQ et Docker, ainsi qu'en modélisation mathématique, traitement de données et optimisation discrète.
+Ingénieur logiciel et physicien spécialisé en développement backend Python, systèmes distribués et optimisation. Expérience en production avec FastAPI, MySQL, RabbitMQ et Docker, ainsi qu'en modélisation mathématique, traitement de données et optimisation discrète.
 
 # Expérience
 
-## Margaux Systems — Ingénieur en Recherche Opérationnelle
+## Margaux Systems — Fondateur, Recherche Opérationnelle
 *Mar 2026 – Présent*
 
-- Développement de solutions d'optimisation et d'aide à la décision pour la planification de la production industrielle.
-- Modélisation de problèmes d'optimisation discrète avec Python et MiniZinc.
-- Conception de simulations, analyses et workflows logiciels pour traduire des contraintes opérationnelles en solutions exploitables.
+- Développement d'outils d'optimisation et d'aide à la décision pour la planification de production, documentés sous forme d'études de cas publiées.
+- Modélisation de problèmes d'ordonnancement en Python et MiniZinc, avec simulations pour évaluer différents scénarios.
 
 ## SNAPP' — Ingénieur Backend Python (Contractuel)
 *Fév. 2025 – Mar. 2026*
 
-- Développement et maintenance de services backend Python/FastAPI en production pour un projet bancaire.
-- Conception d'APIs REST asynchrones, de middlewares d'authentification et d'autorisation, et de services communiquant via RabbitMQ.
-- Développement de couches de persistance multi-bases avec PostgreSQL et SQLAlchemy.
-- Développement et maintenance de tests automatisés avec pytest, ainsi que de tests d'intégration.
-- Refonte d'une intégration FIX 4.2 sur TCP en remplaçant l'ensemble du code existant : gestion des messages, sessions, reconnexion, abonnements, cache et tests d'intégration.
-- Développement d'algorithmes de traitement de données et d'optimisation, avec une attention portée à la performance, la robustesse et la fiabilité.
+- Responsable de la couche d'authentification et d'autorisation d'une plateforme bancaire : sessions JWT, contrôle d'accès par rôles (20 rôles, 135 permissions) et 2FA multi-canal (TOTP, OTP par SMS et e-mail) avec verrouillage des connexions.
+- Refonte complète de l'intégration FIX 4.2 : codec du protocole, transport WebSocket, gestion des sessions, reconnexion avec réabonnement, et exposition de l'état des paires FX via un endpoint HTTP.
+- Conception d'APIs REST asynchrones et de middlewares d'authentification et d'autorisation ; services communiquant via RabbitMQ RPC.
+- Co-conception du moteur de traitement des demandes : workflows typés, cycle de vie à 8 états, audit, documents et messagerie interne.
+- Persistance multi-bases sur trois bases MySQL avec SQLAlchemy et Alembic.
+- Développement et maintenance de tests automatisés avec pytest, dont des tests d'intégration.
 
 ## SIAL — Technicien de Laboratoire
 *Mar 2024 – Mar 2025*
@@ -46,24 +45,28 @@ Ingénieur logiciel et physicien spécialisé en développement backend Python, 
 ## Développeur Logiciel Indépendant
 *Oct 2022 – Mar 2024*
 
-- Conception et déploiement de backends, APIs et applications web selon les besoins des projets.
+- Conception et déploiement d'applications web et d'outils logiciels en autodidacte ; plusieurs figurent dans les projets sélectionnés.
 
 # Formation
 
 ## Universidad de los Andes — B.Sc. Physique (cum laude)
-*Mérida, Venezuela*
+*Mérida, Venezuela — 2018*
 
-Formation en dynamique non linéaire, théorie du chaos, modélisation mathématique et méthodes computationnelles.
+Formation en modélisation mathématique et méthodes computationnelles. Passage vers l'ingénierie logicielle via ~70 cours d'informatique en autodidacte : algorithmique, structures de données, architecture, langages de programmation et compilateurs.
 
 # Compétences
 
 **Langages :** Python, SQL, JavaScript/TypeScript, C++
 
-**Backend :** FastAPI, Python asynchrone, APIs REST, RabbitMQ
+**Backend :** FastAPI, Python asynchrone, APIs REST, RabbitMQ, SQLAlchemy, Alembic
 
-**Bases de données & infrastructure :** PostgreSQL, Docker, Git
+**Bases de données & infrastructure :** MySQL, Docker, Git, Linux
 
 **Optimisation :** MiniZinc, optimisation discrète, modélisation mathématique, algorithmes
+
+**Langues :** Français (courant), Anglais (bilingue), Espagnol (langue maternelle)
+
+**Autorisation de travail :** France — droit de travailler sans démarche de l'employeur
 
 # Projets Sélectionnés
 

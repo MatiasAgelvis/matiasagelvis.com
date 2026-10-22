@@ -16,59 +16,61 @@ download-text: "⬇ Download PDF"
 
 # Summary
 
-Software engineer and physicist specializing in Python backend development, API design, data processing, and optimization. Combines production backend experience — FastAPI, PostgreSQL, Docker, RabbitMQ — with a strong foundation in mathematical modeling and discrete optimization.
+Software engineer and physicist specializing in Python backend development, API design, data processing, and optimization. Combines production backend experience — FastAPI, MySQL, Docker, RabbitMQ — with a strong foundation in mathematical modeling and discrete optimization.
 
 # Experience
 
-## Margaux Systems — Operations Research Engineer
+## Margaux Systems — Founder, Operations Research
 *Mar 2026 – Present*
 
-- Developing optimization and decision-support solutions for manufacturing scheduling and production planning.
-- Building mathematical optimization models and analytical tools using Python and MiniZinc.
-- Designing simulations, analyses, and software workflows to translate operational constraints into practical solutions.
+- Building optimization and decision-support tooling for manufacturing scheduling and production planning, documented as published case studies.
+- Modelling scheduling problems in Python and MiniZinc, with simulations to evaluate operational scenarios.
 
 ## SNAPP' — Python Backend Engineer (Contractor)
 *Feb 2025 – Mar 2026*
 
-- Developed and maintained production backend services for a banking project using Python/FastAPI.
-- Designed asynchronous REST APIs, authentication/authorization middleware, and services communicating via RabbitMQ.
-- Built multi-database persistence layers with PostgreSQL and SQLAlchemy.
-- Developed and maintained automated tests with pytest, as well as integration tests.
-- Redesigned a FIX 4.2 integration over TCP, replacing all existing code: message handling, sessions, reconnection, subscriptions, caching, and integration testing.
-- Developed data-processing and optimization algorithms with a focus on performance, robustness, and reliability.
+- Owned the identity and access layer of a banking platform: JWT sessions, role-based access control (20 roles, 135 permissions), and multi-channel 2FA (TOTP, SMS and email OTP) with login lockout.
+- Rebuilt the FIX 4.2 integration end to end — protocol codec, WebSocket transport, session lifecycle, reconnection with resubscription — and exposed live FX pair state over an HTTP endpoint.
+- Designed asynchronous REST APIs and authentication/authorization middleware; services communicate via RabbitMQ RPC.
+- Co-built the request-processing engine: typed workflows, 8-state lifecycle, audit trail, documents, and internal messaging.
+- Built persistence across three MySQL databases with SQLAlchemy and Alembic.
+- Developed and maintained automated tests with pytest, including integration tests.
 
 ## SIAL — Laboratory Technician
 *Mar 2024 – Mar 2025*
 
-- Conducted laboratory testing and sample preparation under established procedures and safety requirements.
-- Managed experimental data, records, logistics, and equipment.
+- Laboratory testing, sample preparation, and experimental data management.
 
 ## Independent Software Development
 *Oct 2022 – Mar 2024*
 
-- Developed independent software projects while pursuing software engineering opportunities.
-- Built and deployed web applications and software tools.
+- Built and deployed web applications and software tools as self-directed projects; several are listed under Selected Projects.
 
 ## Frontend Developer — Remote
 *Mar 2022 – Oct 2022*
 
-- Developed responsive web application features using React, Next.js, TypeScript, and Chakra UI.
-- Implemented reusable UI components and worked on cross-browser compatibility and performance.
+- Built responsive web application features with React, Next.js, TypeScript, and Chakra UI.
 
 # Education
 
 ## Universidad de los Andes — B.Sc. Physics (cum laude)
-*Mérida, Venezuela*
+*Mérida, Venezuela — 2018*
 
-Background in nonlinear dynamics, chaos theory, mathematical modeling, and computational methods.
+Background in mathematical modeling and computational methods. Moved into software engineering through ~70 self-directed computer science courses: algorithms, data structures, computer architecture, programming languages, and compilers.
 
 # Skills
 
-**Languages:** Python, SQL, JavaScript
+**Programming languages:** Python, SQL, JavaScript
 
-**Backend:** FastAPI, asynchronous Python, REST APIs, RabbitMQ
+**Backend:** FastAPI, asynchronous Python, REST APIs, RabbitMQ, SQLAlchemy, Alembic
+
+**Databases & infrastructure:** MySQL, Docker, Git, Linux
 
 **Optimization:** MiniZinc, discrete optimization, mathematical modeling, algorithms
+
+**Spoken languages:** French (fluent), English (bilingual), Spanish (native)
+
+**Work authorization:** France — full right to work, no employer sponsorship required
 
 # Selected Projects
 
