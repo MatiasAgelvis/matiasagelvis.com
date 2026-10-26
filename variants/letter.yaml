@@ -1,0 +1,15 @@
+# Internal tool: the letter builder. No PDF, no markdown body — the page is a
+# form that renders an A4 sheet in the browser, printed via Cmd/Ctrl+P.
+# Identity comes from cv.yaml, so the sender block cannot drift again.
+
+slug: letter
+template: templates/letter.html
+marker: default
+lang: fr
+
+title: Letter builder
+description: Local-only letter builder. Nothing is uploaded.
+
+path: letter
+
+noindex: true
