@@ -4,12 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="$description$" />
-  <title>$name$ — $title$</title>
+$if(noindex)$  <meta name="robots" content="noindex, nofollow" />
+$endif$  <title>$name$ — $title$</title>
 $for(css)$<link rel="stylesheet" href="$css$" />$endfor$
 </head>
 <body>
   <nav class="top-nav no-print">
-    <a href="$back-url$">← back to home</a>
+    <a href="$back-url$">$back-text$</a>
     <span class="lang-picker">
       <a href="$en-href$" hreflang="en"$if(en-active)$ class="active"$endif$>EN</a>
       <a href="$fr-href$" hreflang="fr"$if(fr-active)$ class="active"$endif$>FR</a>
@@ -19,9 +20,9 @@ $for(css)$<link rel="stylesheet" href="$css$" />$endfor$
     <h1>$name$</h1>
     <p class="subtitle">$title$ · $location$</p>
     <p class="meta"><a href="tel:$phone-href$">$phone$</a> · <a href="mailto:$email$">$email$</a></p>
-    <p class="meta"><a href="https://$website$">$website$</a> · <a href="https://margauxsystems.com">margauxsystems.com</a> · <a href="https://$github$">GitHub</a> · <a href="$linkedin$">LinkedIn</a></p>
+    <p class="meta"><a href="https://$website$">$website$</a> · <a href="https://$github$">GitHub</a> · <a href="$linkedin$">LinkedIn</a></p>
   </header>
-  <p class="download no-print"><a href="CV.pdf" download>$download-text$</a></p>
+  <p class="download no-print"><a href="$pdf$" download>$download-text$</a></p>
   <main>
     $body$
   </main>
