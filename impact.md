@@ -27,10 +27,14 @@ Beat 5 is the cheap one: *"what would have happened if this hadn't been done?"* 
 - 56 FX pairs; live pair state served over HTTP
 - Delivered inside an unfunded rewrite window, billed at ~8 h/week, told to ship
   ASAP with no test budget
+- Trade logic stayed with the bank and was out of scope — the team was not allowed
+  to touch it. It is probably still messy; that is not your claim to make.
+- Pain was felt by the integration team: you and your colleagues. The beneficiaries
+  are the bank's end clients.
 
-**Missing**
-- Beat 4: who felt the pain — trading desk, ops, or whoever babysat the reconnects?
-- Any evidence for the "stale or slow prices" hypothesis. Do **not** claim it without it.
+**Resolved — no outcome claim.** You never observed the client-side effect, so the
+feed's own behaviour *is* the claim. Anything beyond it would be invention. That's
+fine: a bullet can stop at beat 3 and still be strong.
 
 **FR**
 > Repris un flux de change au comptant (FIX 4.2 sur WebSocket, 56 paires de devises)
@@ -53,35 +57,40 @@ Beat 5 is the cheap one: *"what would have happened if this hadn't been done?"* 
 ## 2. Authorization layer
 
 **Confirmed**
-- Permissions are rows in a `(domain, action, privilege)` namespace
-- Granted through roles, carried as JWT scopes
-- Routes declare the tuple they need; one FastAPI dependency does the subset check
+- Before: a plain bearer token. The permission model was designed by your lead and
+  partially, poorly implemented by the bank.
+- You implemented that model and extended it.
+- Permissions as `(domain, action, privilege)` rows, granted through roles, carried
+  as JWT scopes, enforced by one middleware that checks the tuple each route declares
 - 20 roles, 135 permissions
-- Also: multi-channel 2FA (SMS via Sinch, then Authy), login lockout,
-  per-role session limits, IP allow-listing, session-before-authorization ordering
+- Added: session revocation, account blocking, multi-channel 2FA (SMS via Sinch, then
+  Authy), per-role session limits, audit of failed authentications, IP allow-listing
 
-**Missing**
-- Beat 3, if you have it: what specifically got easier — onboarding a role,
-  auditing access, adding a route? One sentence makes this bullet land.
+**Attribution matters.** Do not write "j'ai conçu". You implemented a design that was
+your lead's, on top of a bad partial implementation. In an interview that version is
+*more* credible, not less — and it survives a call to the lead.
+
+You said "we added" for the extensions. If the 2FA, blocking or audit work was shared
+with colleagues, write "contribué à" for those and keep the first person for what was
+yours alone.
 
 **FR**
-> Reconstruit le modèle d'autorisation d'une API bancaire autour d'un espace de
-> permissions (domaine, action, privilège) : les permissions sont des données,
-> portées par des rôles et transmises en scopes JWT, et un unique middleware FastAPI
-> vérifie que le tuple déclaré par la route est inclus dans les scopes. Ajouter une
-> route devient une déclaration et non un cas particulier — ce qui permet de tenir
-> 20 rôles et 135 permissions sans que le code se disperse. Complété par la 2FA
-> multi-canal (SMS puis application d'authentification), le verrouillage de
-> connexion, les limites de session par rôle et une liste blanche d'IP.
+> Repris l'authentification d'une API bancaire qui n'était qu'un simple jeton bearer,
+> en mettant en œuvre le modèle de permissions défini par le lead : permissions en
+> (domaine, action, privilège), portées par des rôles et transmises en scopes JWT,
+> vérifiées par un middleware unique à partir du tuple déclaré par chaque route —
+> ajouter une route devient une déclaration, pas un cas particulier. Étendu avec la
+> révocation de session, le blocage de compte, la 2FA multi-canal, les limites de
+> session par rôle et l'audit des authentifications échouées.
 
 **EN**
-> Rebuilt the authorization model of a banking API around a `(domain, action,
-> privilege)` permission namespace: permissions are data, granted through roles,
-> carried as JWT scopes, and enforced by a single FastAPI dependency that checks
-> the tuple each route declares. Adding a route became a declaration rather than a
-> special case — which is what kept 135 permissions across 20 roles from turning
-> into 135 bespoke checks. Extended with multi-channel 2FA (SMS, then authenticator
-> app), login lockout, per-role session limits, and IP allow-listing.
+> Took over the authentication of a banking API that was a plain bearer token,
+> implementing the permission model my lead had designed: permissions as
+> `(domain, action, privilege)` rows, granted through roles, carried as JWT scopes,
+> and enforced by a single middleware that checks the tuple each route declares — so
+> adding a route is a declaration, not a special case. Extended it with session
+> revocation, account blocking, multi-channel 2FA, per-role session limits, and audit
+> of failed authentications.
 
 ---
 
@@ -122,4 +131,6 @@ Beat 5 is the cheap one: *"what would have happened if this hadn't been done?"* 
 - "I worked for free" / "16-hour days" — interview story about judgment, not a CV line
 - hour totals — the tracked hours are sold volume, not hours worked
 - any claim of a test suite on the FIX work — you were directed to ship without one
+- sole design credit for the authorization model — your lead designed it, you
+  implemented and extended it
 - the client bank's name — under a one-year non-solicitation, until roughly March 2027
