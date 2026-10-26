@@ -1,23 +1,12 @@
----
-name: Matías Agelvis
-title: Ingénieur Logiciel
-location: Bordeaux, France
-website: matiasagelvis.com
-github: github.com/MatiasAgelvis
-description: Ingénieur logiciel et physicien spécialisé en développement backend Python, systèmes distribués et optimisation.
-url: https://matiasagelvis.com
-linkedin: https://www.linkedin.com/in/matias-agelvis/
-email: cv@matiasagelvis.com
-phone: "+33 7 65 65 54 73"
-phone-href: "+33765655473"
-lang: fr
-back-url: ../../index.html
-download-text: "⬇ Télécharger le PDF"
----
-
 # Résumé
 
+<!-- v:default -->
 Ingénieur logiciel et physicien spécialisé en développement backend Python, systèmes distribués et optimisation. Expérience en production avec FastAPI, MySQL, RabbitMQ et Docker, ainsi qu'en modélisation mathématique, traitement de données et optimisation discrète.
+<!-- /v -->
+
+<!-- v:or -->
+Ingénieur logiciel et physicien, spécialisé en modélisation mathématique et optimisation discrète. Je conçois des outils d'aide à la décision — ordonnancement, planification de production — en Python et MiniZinc, et je les mène jusqu'en production : services backend FastAPI, APIs REST, RabbitMQ, MySQL, Docker.
+<!-- /v -->
 
 # Expérience
 

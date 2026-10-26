@@ -1,20 +1,3 @@
----
-name: Matias Agelvis
-title: Software Engineer
-location: Bordeaux, France
-website: matiasagelvis.com
-github: github.com/MatiasAgelvis
-description: Software engineer and physicist specializing in Python backend development, API design, data processing, and optimization.
-url: https://matiasagelvis.com
-linkedin: https://www.linkedin.com/in/matias-agelvis/
-email: cv@matiasagelvis.com
-phone: "+33 7 65 65 54 73"
-phone-href: "+33765655473"
-lang: en
-back-url: ../index.html
-download-text: "⬇ Download PDF"
----
-
 # Summary
 
 Software engineer and physicist specializing in Python backend development, API design, data processing, and optimization. Combines production backend experience — FastAPI, MySQL, Docker, RabbitMQ — with a strong foundation in mathematical modeling and discrete optimization.
