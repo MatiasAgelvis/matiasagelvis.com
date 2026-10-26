@@ -13,6 +13,7 @@
 
 all:
 	uv run python tools/build_cv.py
+	uv run python tools/check_links.py
 
 list:
 	@ls variants/*.yaml | sed 's|variants/||; s|\.yaml$$||'
