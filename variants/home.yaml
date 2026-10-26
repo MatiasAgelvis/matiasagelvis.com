@@ -1,0 +1,14 @@
+slug: home
+source: home.md
+template: templates/home.html
+marker: default
+lang: en
+
+title: Software Engineer
+description: Backend engineer and physicist in Bordeaux. Python services, API design, and the modelling behind them.
+
+path: .
+en-href: index.html
+fr-href: fr/index.html
+
+noindex: false

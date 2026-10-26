@@ -6,143 +6,138 @@
   <meta name="robots" content="noindex, nofollow" />
   <title>Letter builder</title>
   <style>
-    :root {
-      --ink: #111;
-      --muted: #57606a;
-      --line: #d0d7de;
-      --accent: #0969da;
-      --bg: #eef1f4;
-    }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; }
+:root {
+--ink: #111;
+--muted: #57606a;
+--line: #d0d7de;
+--accent: #0969da;
+--bg: #eef1f4;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+display: grid;
+grid-template-columns: 21rem 1fr;
+min-height: 100vh;
+background: var(--bg);
+font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+color: var(--ink);
+}
 
-    body {
-      display: grid;
-      grid-template-columns: 21rem 1fr;
-      min-height: 100vh;
-      background: var(--bg);
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      color: var(--ink);
-    }
+.panel {
+position: sticky;
+top: 0;
+max-height: 100vh;
+overflow-y: auto;
+padding: 1.25rem 1.25rem 3rem;
+background: #fff;
+border-right: 1px solid var(--line);
+}
+.panel h1 {
+font-size: 0.95rem;
+margin: 0 0 0.25rem;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+color: var(--muted);
+}
+.panel .hint { font-size: 0.78rem; color: var(--muted); margin: 0 0 1rem; line-height: 1.4; }
+.panel .hint kbd {
+font: inherit;
+background: #f6f8fa;
+border: 1px solid var(--line);
+border-radius: 4px;
+padding: 0 0.25rem;
+}
+label {
+display: block;
+font-size: 0.74rem;
+color: var(--muted);
+margin: 0.7rem 0 0.2rem;
+text-transform: uppercase;
+letter-spacing: 0.04em;
+}
+input, textarea, select {
+width: 100%;
+font: inherit;
+font-size: 0.85rem;
+color: var(--ink);
+background: #fff;
+border: 1px solid var(--line);
+border-radius: 6px;
+padding: 0.4rem 0.5rem;
+}
+input:focus, textarea:focus, select:focus {
+outline: 2px solid var(--accent);
+outline-offset: -1px;
+border-color: var(--accent);
+}
+textarea { resize: vertical; min-height: 5rem; line-height: 1.45; }
+.actions { display: flex; gap: 0.5rem; margin-top: 1.25rem; }
+button {
+font: inherit;
+font-size: 0.85rem;
+cursor: pointer;
+border-radius: 6px;
+padding: 0.5rem 0.9rem;
+border: 1px solid var(--line);
+background: #fff;
+color: var(--ink);
+}
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+button:hover { border-color: var(--accent); }
 
-    /* ---------- form panel ---------- */
-    .panel {
-      position: sticky;
-      top: 0;
-      max-height: 100vh;
-      overflow-y: auto;
-      padding: 1.25rem 1.25rem 3rem;
-      background: #fff;
-      border-right: 1px solid var(--line);
-    }
-    .panel h1 {
-      font-size: 0.95rem;
-      margin: 0 0 0.25rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--muted);
-    }
-    .panel .hint { font-size: 0.78rem; color: var(--muted); margin: 0 0 1rem; line-height: 1.4; }
-    .panel .hint kbd {
-      font: inherit;
-      background: #f6f8fa;
-      border: 1px solid var(--line);
-      border-radius: 4px;
-      padding: 0 0.25rem;
-    }
-    label {
-      display: block;
-      font-size: 0.74rem;
-      color: var(--muted);
-      margin: 0.7rem 0 0.2rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-    input, textarea, select {
-      width: 100%;
-      font: inherit;
-      font-size: 0.85rem;
-      color: var(--ink);
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      padding: 0.4rem 0.5rem;
-    }
-    input:focus, textarea:focus, select:focus {
-      outline: 2px solid var(--accent);
-      outline-offset: -1px;
-      border-color: var(--accent);
-    }
-    textarea { resize: vertical; min-height: 5rem; line-height: 1.45; }
-    .actions { display: flex; gap: 0.5rem; margin-top: 1.25rem; }
-    button {
-      font: inherit;
-      font-size: 0.85rem;
-      cursor: pointer;
-      border-radius: 6px;
-      padding: 0.5rem 0.9rem;
-      border: 1px solid var(--line);
-      background: #fff;
-      color: var(--ink);
-    }
-    button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
-    button:hover { border-color: var(--accent); }
+.preview { padding: 2rem 1.5rem 4rem; display: flex; justify-content: center; align-items: flex-start; }
+.sheet {
+width: 210mm;
+min-height: 297mm;
+padding: 22mm 24mm;
+background: #fff;
+box-shadow: 0 2px 24px rgb(0 0 0 / 0.14);
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 10.5pt;
+line-height: 1.5;
+color: var(--ink);
+}
+.head { display: flex; justify-content: space-between; gap: 16mm; margin-bottom: 14mm; }
+.sender { font-size: 9pt; line-height: 1.45; color: var(--muted); }
+.sender strong { display: block; font-size: 13pt; color: var(--ink); margin-bottom: 0.5mm; }
+.sender a { color: inherit; text-decoration: none; }
+.recipient { text-align: right; font-size: 9.5pt; line-height: 1.45; }
+.pre { white-space: pre-line; }
+.meta { text-align: right; margin: 0 0 9mm; }
+.subject { font-weight: 600; margin: 0 0 6mm; }
+.sheet p { margin: 0 0 4mm; }
+.salutation { margin-bottom: 5mm !important; }
+.signature { margin-top: 16mm !important; }
+.empty { color: #b0b6bd; }
+@media (max-width: 900px) {
+body { grid-template-columns: 1fr; }
+.panel { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); }
+.preview { padding: 1rem; overflow-x: auto; justify-content: flex-start; }
+}
 
-    /* ---------- A4 preview ---------- */
-    .preview { padding: 2rem 1.5rem 4rem; display: flex; justify-content: center; align-items: flex-start; }
-
-    .sheet {
-      width: 210mm;
-      min-height: 297mm;
-      padding: 22mm 24mm;
-      background: #fff;
-      box-shadow: 0 2px 24px rgb(0 0 0 / 0.14);
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-      font-size: 10.5pt;
-      line-height: 1.5;
-      color: var(--ink);
-    }
-    .head { display: flex; justify-content: space-between; gap: 16mm; margin-bottom: 14mm; }
-    .sender { font-size: 9pt; line-height: 1.45; color: var(--muted); }
-    .sender strong { display: block; font-size: 13pt; color: var(--ink); margin-bottom: 0.5mm; }
-    .recipient { text-align: right; font-size: 9.5pt; line-height: 1.45; }
-    .pre { white-space: pre-line; }
-    .meta { text-align: right; margin: 0 0 9mm; }
-    .subject { font-weight: 600; margin: 0 0 6mm; }
-    .sheet p { margin: 0 0 4mm; }
-    .salutation { margin-bottom: 5mm !important; }
-    .signature { margin-top: 16mm !important; }
-    .empty { color: #b0b6bd; }
-
-    @media (max-width: 900px) {
-      body { grid-template-columns: 1fr; }
-      .panel { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); }
-      .preview { padding: 1rem; overflow-x: auto; justify-content: flex-start; }
-    }
-
-    /* ---------- print: only the sheet ---------- */
-    @media print {
-      @page { size: A4; margin: 22mm 24mm; }
-      body { display: block; background: #fff; }
-      .panel { display: none !important; }
-      .preview { display: block; padding: 0; }
-      .sheet {
-        width: auto;
-        min-height: 0;
-        padding: 0;
-        box-shadow: none;
-        margin: 0;
-      }
-      .empty { color: inherit; }
-    }
-  </style>
+@media print {
+@page { size: A4; margin: 22mm 24mm; }
+body { display: block; background: #fff; }
+.panel { display: none !important; }
+.preview { display: block; padding: 0; }
+.sheet {
+width: auto;
+min-height: 0;
+padding: 0;
+box-shadow: none;
+margin: 0;
+}
+.empty { color: inherit; }
+}
+</style>
 </head>
 <body>
   <aside class="panel no-print">
     <h1>Letter builder</h1>
     <p class="hint">
       Local only — nothing is uploaded. Print with <kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>P</kbd>
-      and choose "Save as PDF", scale 100%.
+      and choose &quot;Save as PDF&quot;, scale 100%.
     </p>
 
     <label for="lang">Language</label>
@@ -152,28 +147,28 @@
     </select>
 
     <label for="recipientName">Recipient name</label>
-    <input id="recipientName" data-input="recipientName" autocomplete="off" />
+    <input id="recipientName" data-input="recipientName" autocomplete="off"></input>
 
     <label for="recipientTitle">Recipient title</label>
-    <input id="recipientTitle" data-input="recipientTitle" autocomplete="off" />
+    <input id="recipientTitle" data-input="recipientTitle" autocomplete="off"></input>
 
     <label for="company">Company</label>
-    <input id="company" data-input="company" autocomplete="off" />
+    <input id="company" data-input="company" autocomplete="off"></input>
 
     <label for="companyAddress">Company address</label>
     <textarea id="companyAddress" data-input="companyAddress" rows="3"></textarea>
 
     <label for="position">Position</label>
-    <input id="position" data-input="position" autocomplete="off" />
+    <input id="position" data-input="position" autocomplete="off"></input>
 
     <label for="place">Place</label>
-    <input id="place" data-input="place" autocomplete="off" />
+    <input id="place" data-input="place" autocomplete="off"></input>
 
     <label for="date">Date</label>
-    <input id="date" type="date" data-input="date" />
+    <input id="date" type="date" data-input="date"></input>
 
     <label for="salutation">Salutation</label>
-    <input id="salutation" data-input="salutation" autocomplete="off" />
+    <input id="salutation" data-input="salutation" autocomplete="off"></input>
 
     <label for="opening">Opening</label>
     <textarea id="opening" data-input="opening" rows="2"></textarea>
@@ -200,11 +195,12 @@
     <article class="sheet">
       <div class="head">
         <div class="sender">
-          <strong>Matias Agelvis</strong>
-          Software Engineer<br />
-          cv@matiasagelvis.com<br />
-          +33 7 65 65 54 73<br />
-          matiasagelvis.com
+          <strong>Matías Agelvis</strong>
+          <span id="senderTitle">Ingénieur logiciel</span><br />
+          <a href="mailto:cv@matiasagelvis.com">cv@matiasagelvis.com</a><br />
+          <a href="tel:+33765655473">+33 7 65 65 54 73</a><br />
+          <a href="https://matiasagelvis.com">matiasagelvis.com</a><br />
+          <a href="https://www.linkedin.com/in/matias-agelvis/">linkedin.com/in/matias-agelvis</a>
         </div>
         <div class="recipient">
           <span data-field="recipientName"></span><br />
@@ -223,7 +219,7 @@
       <p data-field="evidence"></p>
       <p data-field="closing"></p>
       <p class="closing" data-field="closingFormula"></p>
-      <p class="signature">Matias Agelvis</p>
+      <p class="signature">Matías Agelvis</p>
     </article>
   </main>
 
@@ -233,6 +229,7 @@
     const DEFAULTS = {
       fr: {
         subjectLabel: "Objet :",
+        senderTitle: "Ingénieur logiciel",
         salutation: "Madame, Monsieur,",
         opening: "Je me permets de vous adresser ma candidature et vous remercie de l'attention que vous porterez à mon dossier.",
         body: "Ce qui retient particulièrement mon attention chez vous, c'est ...",
@@ -242,6 +239,7 @@
       },
       en: {
         subjectLabel: "Subject:",
+        senderTitle: "Software Engineer",
         salutation: "Dear Sir or Madam,",
         opening: "I am writing to apply for the position and thank you for considering my application.",
         body: "What particularly draws me to your company is ...",
@@ -256,7 +254,7 @@
     const placeLine = document.getElementById("placeLine");
     const inputs = [...document.querySelectorAll("[data-input]")];
     const outputs = [...document.querySelectorAll("[data-field]")];
-    const byName = (name) => document.querySelector(`[data-input="${name}"]`);
+    const byName = (name) => document.querySelector('[data-input="' + name + '"]');
 
     function todayISO() {
       const now = new Date();
@@ -274,12 +272,13 @@
         year: "numeric",
       });
       if (!place) return formatted;
-      return lang === "fr" ? `${place}, le ${formatted}` : `${place}, ${formatted}`;
+      return lang === "fr" ? place + ", le " + formatted : place + ", " + formatted;
     }
 
     function render() {
       const lang = langSelect.value;
       subjectLabel.textContent = DEFAULTS[lang].subjectLabel;
+      document.getElementById("senderTitle").textContent = DEFAULTS[lang].senderTitle;
 
       for (const output of outputs) {
         const input = byName(output.dataset.field);

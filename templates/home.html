@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="$lang$">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="$description$" />
+$if(noindex)$  <meta name="robots" content="noindex, nofollow" />
+$endif$  <title>$name$ — $title$</title>
+$for(css)$  <link rel="stylesheet" href="$css$" />
+$endfor$  <style>
+    /* landing-page-only overrides on top of web.css */
+    .lang-picker { display: flex; justify-content: flex-end; gap: 0.6rem; font-size: 0.85rem; }
+    .lang-picker a { color: #57606a; text-decoration: none; }
+    .lang-picker a.active { color: #0969da; font-weight: 600; }
+    .tagline { margin: 1.2rem auto 0; max-width: 34rem; color: #333; }
+    .tagline p { margin: 0; }
+    .cards { display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
+    .card {
+      flex: 1 1 12rem;
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid #d0d7de;
+      border-radius: 10px;
+      padding: 1.1rem 1.2rem;
+    }
+    .card:hover { border-color: #0969da; box-shadow: 0 2px 8px rgb(9 105 218 / 0.12); }
+    .card strong { display: block; color: #0969da; margin-bottom: 0.2rem; }
+    .card span { font-size: 0.9rem; color: #57606a; }
+    footer { text-align: center; color: #57606a; font-size: 0.9rem; margin-top: 3rem; }
+    footer a { color: #0969da; }
+  </style>
+</head>
+<body>
+  <main>
+    <nav class="lang-picker no-print">
+      <a href="$en-href$" hreflang="en"$if(en-active)$ class="active"$endif$>EN</a>
+      <a href="$fr-href$" hreflang="fr"$if(fr-active)$ class="active"$endif$>FR</a>
+    </nav>
+
+    <header class="contact">
+      <h1>$name$</h1>
+      <p class="subtitle">$title$ · $location$</p>
+      <p class="meta"><a href="mailto:$email$">$email$</a> · <a href="tel:$phone-href$">$phone$</a></p>
+      <p class="meta">
+        <a href="https://$website$">$website$</a> ·
+        <a href="https://$github$">GitHub</a> ·
+        <a href="$linkedin$">LinkedIn</a>
+      </p>
+      <div class="tagline">$body$</div>
+    </header>
+
+    <section id="cv">
+$if(fr-active)$      <h2>CV</h2>
+      <div class="cards">
+        <a class="card" href="cv/index.html">
+          <strong>Voir le CV</strong>
+          <span>Parcours, formation et projets sélectionnés.</span>
+        </a>
+      </div>
+      <div class="cards">
+        <a class="card" href="cv/Matias-Agelvis-CV.pdf" download>
+          <strong>Télécharger le PDF</strong>
+          <span>Français — une seule page.</span>
+        </a>
+        <a class="card" href="../cv/Matias-Agelvis-CV-EN.pdf" download>
+          <strong>Download the CV</strong>
+          <span>English — single page.</span>
+        </a>
+      </div>
+$else$      <h2>CV</h2>
+      <div class="cards">
+        <a class="card" href="cv/index.html">
+          <strong>View CV</strong>
+          <span>Experience, education, and selected projects.</span>
+        </a>
+      </div>
+      <div class="cards">
+        <a class="card" href="cv/Matias-Agelvis-CV-EN.pdf" download>
+          <strong>Download PDF</strong>
+          <span>English — single page.</span>
+        </a>
+        <a class="card" href="fr/cv/Matias-Agelvis-CV.pdf" download>
+          <strong>Télécharger le CV</strong>
+          <span>Français — une seule page.</span>
+        </a>
+      </div>
+$endif$    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <iframe data-tally-src="https://tally.so/embed/A76LDN?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="337" frameborder="0" marginheight="0" marginwidth="0" title="Contact"></iframe>
+    </section>
+
+    <footer>
+      <a href="https://$github$">GitHub</a> ·
+      <a href="$linkedin$">LinkedIn</a>
+    </footer>
+  </main>
+  <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+  <script src="https://cdn.counter.dev/script.js" data-id="0de1bf3d-1d12-4011-bf4d-485bfe73d701" data-utcoffset="2"></script>
+</body>
+</html>

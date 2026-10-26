@@ -1,0 +1,14 @@
+slug: home-fr
+source: home-fr.md
+template: templates/home.html
+marker: default
+lang: fr
+
+title: Ingénieur Logiciel
+description: Ingénieur backend et physicien à Bordeaux. Services Python, conception d'API et la modélisation qui va avec.
+
+path: fr
+en-href: ../index.html
+fr-href: index.html
+
+noindex: false
