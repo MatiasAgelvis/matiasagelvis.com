@@ -12,7 +12,7 @@ path: fr/cv
 pdf: Matias-Agelvis-CV.pdf
 download-text: "⬇ Télécharger le PDF"
 
-back-url: ../../index.html
+back-url: ../../fr/index.html
 back-text: "← retour à l'accueil"
 en-href: ../../cv/index.html
 fr-href: index.html

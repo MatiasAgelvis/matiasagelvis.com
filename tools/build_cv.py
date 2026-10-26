@@ -92,13 +92,18 @@ def build(variant_path: Path) -> dict[str, str]:
     meta = {**shared, **yaml.safe_load(variant_path.read_text())}
 
     slug = meta.pop("slug")
-    source = ROOT / meta.pop("source")
+    source_name = meta.pop("source", None)
     marker = meta.pop("marker", "default")
+    template = meta.pop("template", "templates/cv.html")
+    pdf_name = meta.pop("pdf", None)
     meta[f"{meta['lang']}-active"] = True
 
     BUILD.mkdir(exist_ok=True)
     markdown = BUILD / f"{slug}.md"
-    markdown.write_text(filter_markdown(source.read_text(), marker))
+    if source_name:
+        markdown.write_text(filter_markdown((ROOT / source_name).read_text(), marker))
+    else:
+        markdown.write_text("")
 
     meta_file = BUILD / f"{slug}.meta.yaml"
     meta_file.write_text(yaml.safe_dump(meta, allow_unicode=True, sort_keys=False))
@@ -108,29 +113,34 @@ def build(variant_path: Path) -> dict[str, str]:
 
     run([
         "pandoc", str(markdown),
-        "--template", "templates/cv.html",
+        "--template", template,
         "--css", "styles/web.css",
         "--embed-resources",
         "--metadata-file", str(meta_file),
         "-o", str(out_dir / "index.html"),
     ])
 
-    print_html = BUILD / f"{slug}-print.html"
-    run([
-        "pandoc", str(markdown),
-        "--template", "templates/cv.html",
-        "--css", "styles/print.css",
-        "--embed-resources",
-        "--metadata-file", str(meta_file),
-        "-o", str(print_html),
-    ])
+    if pdf_name:
+        print_html = BUILD / f"{slug}-print.html"
+        run([
+            "pandoc", str(markdown),
+            "--template", template,
+            "--css", "styles/print.css",
+            "--embed-resources",
+            "--metadata-file", str(meta_file),
+            "-o", str(print_html),
+        ])
 
-    PDF.mkdir(exist_ok=True)
-    pdf = PDF / meta["pdf"]
-    run([sys.executable, "build_pdf.py", str(print_html), str(pdf)])
-    shutil.copy(pdf, out_dir / meta["pdf"])
+        PDF.mkdir(exist_ok=True)
+        pdf = PDF / pdf_name
+        run([sys.executable, "build_pdf.py", str(print_html), str(pdf)])
+        shutil.copy(pdf, out_dir / pdf_name)
 
-    return {"slug": slug, "page": f"site/{meta['path']}/", "pdf": f"pdf/{meta['pdf']}"}
+    return {
+        "slug": slug,
+        "page": str((out_dir / "index.html").relative_to(ROOT)),
+        "pdf": f"pdf/{pdf_name}" if pdf_name else "—",
+    }
 
 
 def main() -> None:
@@ -146,9 +156,10 @@ def main() -> None:
         built.append(build(variant))
 
     width = max(len(b["slug"]) for b in built)
+    page_width = max(len(b["page"]) for b in built)
     print("\nBuilt:")
     for b in built:
-        print(f"  {b['slug']:<{width}}  {b['page']:<22}  {b['pdf']}")
+        print(f"  {b['slug']:<{width}}  {b['page']:<{page_width}}  {b['pdf']}")
 
 
 if __name__ == "__main__":

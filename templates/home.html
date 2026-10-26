@@ -9,9 +9,7 @@ $endif$  <title>$name$ — $title$</title>
 $for(css)$  <link rel="stylesheet" href="$css$" />
 $endfor$  <style>
     /* landing-page-only overrides on top of web.css */
-    .lang-picker { display: flex; justify-content: flex-end; gap: 0.6rem; font-size: 0.85rem; }
-    .lang-picker a { color: #57606a; text-decoration: none; }
-    .lang-picker a.active { color: #0969da; font-weight: 600; }
+    .home-nav { display: flex; justify-content: flex-end; margin: 0 0 1rem; }
     .tagline { margin: 1.2rem auto 0; max-width: 34rem; color: #333; }
     .tagline p { margin: 0; }
     .cards { display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
@@ -33,9 +31,11 @@ $endfor$  <style>
 </head>
 <body>
   <main>
-    <nav class="lang-picker no-print">
-      <a href="$en-href$" hreflang="en"$if(en-active)$ class="active"$endif$>EN</a>
-      <a href="$fr-href$" hreflang="fr"$if(fr-active)$ class="active"$endif$>FR</a>
+    <nav class="home-nav">
+      <span class="lang-picker">
+        <a href="$en-href$" hreflang="en"$if(en-active)$ class="active"$endif$>EN</a>
+        <a href="$fr-href$" hreflang="fr"$if(fr-active)$ class="active"$endif$>FR</a>
+      </span>
     </nav>
 
     <header class="contact">
