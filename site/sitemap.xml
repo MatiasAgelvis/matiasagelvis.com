@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Only canonical pages. Variants such as /fr/cv/or/ are noindex by design. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://matiasagelvis.com/</loc>
+  </url>
+  <url>
+    <loc>https://matiasagelvis.com/cv/</loc>
+  </url>
+  <url>
+    <loc>https://matiasagelvis.com/fr/cv/</loc>
+  </url>
+</urlset>
