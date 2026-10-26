@@ -1,0 +1,20 @@
+# Canonical French CV — what matiasagelvis.com/fr/cv/ serves. Indexable.
+
+slug: fr
+source: cv-fr.md
+marker: default
+lang: fr
+
+title: Ingénieur Logiciel
+description: Ingénieur logiciel et physicien spécialisé en développement backend Python, systèmes distribués et optimisation.
+
+path: fr/cv
+pdf: Matias-Agelvis-CV.pdf
+download-text: "⬇ Télécharger le PDF"
+
+back-url: ../../index.html
+back-text: "← retour à l'accueil"
+en-href: ../../cv/index.html
+fr-href: index.html
+
+noindex: false

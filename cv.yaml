@@ -1,0 +1,12 @@
+# Shared identity — the single source of truth for every CV variant.
+# Per-variant overrides live in variants/*.yaml. Never duplicate these fields there.
+
+name: Matías Agelvis
+email: cv@matiasagelvis.com
+phone: "+33 7 65 65 54 73"
+phone-href: "+33765655473"
+location: Bordeaux, France
+website: matiasagelvis.com
+url: https://matiasagelvis.com
+github: github.com/MatiasAgelvis
+linkedin: https://www.linkedin.com/in/matias-agelvis/

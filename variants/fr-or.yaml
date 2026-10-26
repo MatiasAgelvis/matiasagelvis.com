@@ -1,0 +1,21 @@
+# Targeted variant: optimisation / calcul scientifique.
+# Not in the nav, not in the sitemap, noindex — a delivery vehicle, not an identity.
+
+slug: fr-or
+source: cv-fr.md
+marker: or
+lang: fr
+
+title: Ingénieur Logiciel — Optimisation et Calcul Scientifique
+description: Ingénieur logiciel et physicien, spécialisé en modélisation mathématique, optimisation discrète et développement backend Python.
+
+path: fr/cv/or
+pdf: Matias-Agelvis-CV-Optimisation.pdf
+download-text: "⬇ Télécharger le PDF"
+
+back-url: ../index.html
+back-text: "← retour au CV"
+en-href: ../../../cv/index.html
+fr-href: ../index.html
+
+noindex: true

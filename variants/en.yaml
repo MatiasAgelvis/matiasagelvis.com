@@ -1,0 +1,20 @@
+# Canonical English CV — matiasagelvis.com/cv/. Indexable.
+
+slug: en
+source: cv.md
+marker: default
+lang: en
+
+title: Software Engineer
+description: Software engineer and physicist specializing in Python backend development, API design, data processing, and optimization.
+
+path: cv
+pdf: Matias-Agelvis-CV-EN.pdf
+download-text: "⬇ Download PDF"
+
+back-url: ../index.html
+back-text: "← back to home"
+en-href: index.html
+fr-href: ../fr/cv/index.html
+
+noindex: false
