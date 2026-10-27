@@ -12,7 +12,7 @@ One question, one file. When two of them disagree, the one higher in this table 
 | What are my dates, roles, employers? | `timeline.md` | yes |
 | What is my contact block? | `cv.yaml` | yes |
 | What did I actually do, and how do I say it? | `impact.md` | no |
-| What do I paste into Malt / Free-Work / LinkedIn? | `profiles.md` | no |
+| What do I paste into Malt / Free-Work / LinkedIn? | `profiles-fr.md`, `profiles-en.md` | no |
 | What goes in the CV? | `cv-fr.md`, `cv.md` | yes |
 | What do I do if nothing lands? | `plan.md` | no |
 | What have I sent, and when do I follow up? | `applications.csv` | no |
@@ -27,12 +27,21 @@ purpose. The research assistantship sits under Formation, the two freelance peri
 merged into one entry, and the fintech variant swaps a bullet. `timeline.md` is the
 reference; the CV is one output of it.
 
+## Language
+
+**English is the authoring language.** `cv.md` and `profiles-en.md` are the sources;
+`cv-fr.md` and `profiles-fr.md` are translated from them. Edit in English, then propagate.
+
+Display language is a separate question, decided by the audience: French on French
+platforms (Malt, Free-Work, LinkedIn primary) because that is who is reading, English for
+remote and EU roles.
+
 ## Update order
 
 1. `timeline.md` — if a date or a role changes
 2. `impact.md` — if the story or the evidence changes
 3. `cv-fr.md` / `cv.md` — the CV content
-4. `profiles.md` — the platforms
+4. `profiles-fr.md`, `profiles-en.md` — the platforms
 5. `make` — rebuild the pages and the PDFs
 
 ## Commands
