@@ -1,124 +1,67 @@
-# Matias Agelvis — CV Pipeline
+# Career workspace
 
-One markdown file (`cv.md`) is the single source of truth. From it we produce:
+Two things live here: the static site (CV variants, homepages, letter builder) and the
+working files behind the job search.
 
-- a **static personal website** in `site/` (landing page + a longer HTML CV + a downloadable one-page PDF),
-- a **single-page A4 PDF** in `pdf/` for job applications.
+## The map
 
-## Quick start
+One question, one file. When two of them disagree, the one higher in this table wins.
 
-```sh
-make            # build site/cv/index.html + pdf/CV.pdf (one page enforced)
-make web        # only the HTML CV page
-make pdf        # only the PDF (+ copy into the site)
-```
+| Question | File | Committed |
+|---|---|---|
+| What are my dates, roles, employers? | `timeline.md` | yes |
+| What is my contact block? | `cv.yaml` | yes |
+| What did I actually do, and how do I say it? | `impact.md` | no |
+| What do I paste into Malt / Free-Work / LinkedIn? | `profiles.md` | no |
+| What goes in the CV? | `cv-fr.md`, `cv.md` | yes |
+| What do I do if nothing lands? | `plan.md` | no |
+| What have I sent, and when do I follow up? | `applications.csv` | no |
 
-Then just open `site/index.html` in a browser. No server needed — every link is a
-real file, so the whole site navigates from `file://`.
+The four marked **no** are gitignored: this repo is public, and rates, recruiter contacts
+and contingency plans don't belong in it.
 
-Edit the CV, rebuild, reopen:
+## The CV is not the reference
 
-1. edit `cv.md`
-2. `make`
-3. re-open `site/index.html`
+The CV is a *rendering* of the facts, compressed to one page, and it drops things on
+purpose. The research assistantship sits under Formation, the two freelance periods are
+merged into one entry, and the fintech variant swaps a bullet. `timeline.md` is the
+reference; the CV is one output of it.
 
-## How it works
+## Update order
 
-```mermaid
-flowchart LR
-    A[cv.md] --> B[pandoc + web.css]
-    B --> F[site/cv/index.html]
-    A --> C[pandoc + print.css]
-    C --> D[build/cv-print.html]
-    D --> E[weasyprint]
-    E --> G[pdf/CV.pdf]
-    G -. copy .-> H[site/cv/CV.pdf]
-```
+1. `timeline.md` — if a date or a role changes
+2. `impact.md` — if the story or the evidence changes
+3. `cv-fr.md` / `cv.md` — the CV content
+4. `profiles.md` — the platforms
+5. `make` — rebuild the pages and the PDFs
 
-The CV is rendered to HTML **once** and styled **twice**:
-
-- `styles/web.css` — roomier, everything visible → the longer web version.
-- `styles/print.css` — compact A4, forced to one page → the jobhunt PDF.
-
-`build_pdf.py` (run by `make pdf`) renders the PDF through WeasyPrint and **aborts
-with a clear message if the result is not exactly one page**, so overflow can never
-slip by silently.
-
-## Requirements
-
-- [mise](https://mise.jdx.dev) — pins `pandoc`.
-- [uv](https://github.com/astral-sh/uv) — creates `.venv`, installs `weasyprint`
-  (from `pyproject.toml`). Nothing is installed globally; no `pipx`, no `uvx`, no
-  `pip install -g`.
-- macOS: WeasyPrint needs system Pango (`brew install pango`).
+## Commands
 
 ```sh
-mise install
-uv sync        # first run only; make will also do this on demand
+make               # build every variant (page + one-page PDF), then check links
+make list          # list configured variants
+make followups     # applications due for follow-up (DAYS=7 to look ahead)
+make serve         # build, then preview site/ at http://localhost:8000
+make clean         # remove generated artifacts
 ```
 
-## Project layout
+## How the site is built
 
-```
-cv.md                  # single source of truth (frontmatter + markdown body)
-Makefile               # the one command surface: make / make web / make pdf
-build_pdf.py           # WeasyPrint render + one-page guard
-pyproject.toml         # deps (uv) — currently just weasyprint
-mise.toml              # tool version pins (pandoc)
-templates/cv.html      # pandoc template (frontmatter vars → HTML layout)
-styles/web.css         # website styling
-styles/print.css       # single-page PDF styling
-site/                  # generated website — uploadable as-is, self-contained
-├── index.html         # hand-written landing page (+ Tally contact form)
-├── web.css            # shared site stylesheet (copied by `make web`)
-└── cv/
-    ├── index.html     # generated longer HTML CV (styles inlined)
-    └── CV.pdf         # generated single-page PDF (download)
-pdf/CV.pdf             # generated jobhunt PDF (source of the site copy)
-build/                 # scratch (intermediate print HTML)
+`cv.yaml` (identity) + `variants/*.yaml` (one per page) + `cv-fr.md` / `cv.md` (content)
+→ `tools/build_cv.py` → `site/`.
+
+Content is selected with inline markers:
+
+```markdown
+<!-- v:or -->  ...  <!-- /v -->          a block only the `or` variant renders
+- a bullet <!-- v:backend,fintech -->   a line only those variants render
 ```
 
-## Design decisions
+Untagged content always renders. The one-page rule is enforced by `build_pdf.py`, so a
+variant that overflows fails the build with the overflowing text instead of shipping
+quietly. A live inventory of every generated route is at `/routes/` on the deployed site.
 
-1. **One source of truth.** Every change is an edit to `cv.md`; everything else is
-   generated. No duplicated CV files to drift.
-2. **No reinventing the wheel.** We use pandoc (markdown/text → HTML) and WeasyPrint
-   (HTML+CSS → PDF). The sin is *building* a replacement, never *using* one.
-3. **`Makefile` is the only command interface.** `mise` pins tool versions; `uv`
-   manages dependencies; the Makefile is what you actually type. (mise tasks were
-   considered and dropped to keep a single, familiar surface.)
-4. **One HTML, two stylesheets.** The web and PDF versions share the same rendered
-   markdown; only the CSS differs. The full CV currently fits one A4 page.
-5. **One-page guard.** `build_pdf.py` fails the build if the PDF isn't exactly one
-   page — overflow is loud, never silent.
-6. **Print subset via `.no-print`.** If the CV grows past one page, wrap a section in
-   `::: {.no-print}` … `::: ` to drop it from the PDF only; the website keeps
-   everything. No config file, no second source — the marker travels with its content.
-7. **`site/` is self-contained.** Nothing inside it links outside itself (the CV page
-   inlines its styles via `--embed-resources`; the landing page links a shared
-   `site/web.css` copied by `make web`). The whole directory uploads to any static
-   host with zero build steps. Links use explicit filenames (`cv/index.html`, not
-   `cv/`) so navigation works from disk too.
-8. **Tally form is code-free.** The contact form lives only on `site/index.html`
-   (block id `A76LDN`). Swap it by editing that one iframe.
-9. **No pipx / uvx / global installs.** Pandoc comes from `mise`; Python + WeasyPrint
-   live in `.venv`. The only machine-level thing is the base toolchain (mise, uv, pango).
+## Never edit
 
-## Deploying
-
-Host: **Vercel**, pointed at `site/` — the domain `matiasagelvis.com` already
-lives there (GitHub Pages was the original host, now used only for the separate
-`cellsv` project). `site/` is
-self-contained static files with no build step, so Vercel needs no configuration
-— push to deploy. `vercel.json` sets `outputDirectory: "site"` and no build
-command, because the generated `site/` is committed (build happens locally via
-`make`).
-
-## Open items
-
-- **PDF filename** — currently `CV.pdf` everywhere (dropping the `download` hint on the
-  landing link aside). Date-stamped copies per jobhunt round are an option.
-
-## See also
-
-- [`DESIGN.md`](DESIGN.md) — the full technical design and rationale.
+`site/` is generated — edit the sources and run `make`. `build/` and `pdf/` are artifacts.
+`DESIGN.md` covers the visual design.
