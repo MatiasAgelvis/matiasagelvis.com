@@ -8,5 +8,8 @@ build/
 # OS cruft
 .DS_Store
 
-# Job-search tracker — company names and recruiter contacts stay out of a public repo
+# Job-search working files — not for a public repo
 applications.csv
+plan.md
+impact.md
+profiles.md
