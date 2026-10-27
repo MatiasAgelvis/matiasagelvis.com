@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Routes</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      max-width: 60rem; margin: 0 auto; padding: 2rem 1.25rem 4rem;
+      color: #1f2328; line-height: 1.55;
+    }
+    h1 { font-size: 1.4rem; margin: 0 0 0.2rem; }
+    h2 { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em;
+         color: #57606a; margin: 2rem 0 0.5rem; border-bottom: 1px solid #d0d7de;
+         padding-bottom: 0.2rem; }
+    p.lead { color: #57606a; margin: 0 0 1.5rem; font-size: 0.9rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    th { text-align: left; font-weight: 600; color: #57606a; font-size: 0.75rem;
+         text-transform: uppercase; letter-spacing: 0.04em;
+         border-bottom: 1px solid #d0d7de; padding: 0.4rem 0.5rem; }
+    td { padding: 0.4rem 0.5rem; border-bottom: 1px solid #eaeef2; vertical-align: top; }
+    code { background: #f6f8fa; border-radius: 4px; padding: 0.05rem 0.3rem; font-size: 0.85em; }
+    a { color: #0969da; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .muted { color: #8b949e; }
+    .no { color: #9a6700; }
+    .note { background: #f6f8fa; border-left: 3px solid #d0d7de; padding: 0.75rem 1rem;
+            font-size: 0.85rem; color: #57606a; margin-top: 1rem; }
+    .note code { background: #fff; }
+  </style>
+</head>
+<body>
+  <h1>Routes</h1>
+  <p class="lead">Everything the build emits, generated from <code>variants/*.yaml</code> on 2026-10-27. Not linked, not indexed.</p>
+
+  <h2>Generated pages</h2>
+  <table>
+    <thead>
+      <tr><th>slug</th><th>lang</th><th>marker</th><th>source</th><th>url</th><th>pdf</th><th>crawl</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>en</code></td><td>en</td><td><code>backend</code></td><td><code>cv.md</code></td><td><a href="../cv/">/cv/</a></td><td><a href="../cv/Matias-Agelvis-CV-EN.pdf">Matias-Agelvis-CV-EN.pdf</a></td><td>indexable</td></tr>
+      <tr><td><code>fr-or</code></td><td>fr</td><td><code>or</code></td><td><code>cv-fr.md</code></td><td><a href="../fr/cv/or/">/fr/cv/or/</a></td><td><a href="../fr/cv/or/Matias-Agelvis-CV-Optimisation.pdf">Matias-Agelvis-CV-Optimisation.pdf</a></td><td><span class="no">noindex</span></td></tr>
+      <tr><td><code>fr</code></td><td>fr</td><td><code>backend</code></td><td><code>cv-fr.md</code></td><td><a href="../fr/cv/">/fr/cv/</a></td><td><a href="../fr/cv/Matias-Agelvis-CV.pdf">Matias-Agelvis-CV.pdf</a></td><td>indexable</td></tr>
+      <tr><td><code>home-fr</code></td><td>fr</td><td><code>default</code></td><td><code>home-fr.md</code></td><td><a href="../fr/">/fr/</a></td><td><span class="muted">—</span></td><td>indexable</td></tr>
+      <tr><td><code>home</code></td><td>en</td><td><code>default</code></td><td><code>home.md</code></td><td><a href="../">/</a></td><td><span class="muted">—</span></td><td>indexable</td></tr>
+      <tr><td><code>letter</code></td><td>fr</td><td><code>default</code></td><td><code>—</code></td><td><a href="../letter/">/letter/</a></td><td><span class="muted">—</span></td><td><span class="no">noindex</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Static files</h2>
+  <table>
+    <thead>
+      <tr><th>path</th><th colspan="3">what it is</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>/robots.txt</code></td><td colspan="3">crawler rules, points at the sitemap</td></tr>
+      <tr><td><code>/sitemap.xml</code></td><td colspan="3">canonical pages only — variants are excluded on purpose</td></tr>
+      <tr><td><code>/web.css</code></td><td colspan="3">shared stylesheet, copied from styles/web.css</td></tr>
+      <tr><td><code>/routes/</code></td><td colspan="3">this page — noindex, not linked from anywhere</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>To add a page:</strong> drop a file in <code>variants/</code> with
+    <code>slug</code>, <code>source</code> (optional), <code>template</code> (optional),
+    <code>lang</code>, <code>path</code>, and <code>pdf</code> (optional). Run <code>make</code>.
+    Set <code>noindex: true</code> for anything targeted rather than public.
+  </div>
+</body>
+</html>
