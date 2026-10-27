@@ -119,12 +119,12 @@ PDF</a></p>
     Backend Engineer (Contractor)</h2>
     <p><em>Feb 2025 – Mar 2026</em></p>
     <ul>
-    <li>Unified the access control of a banking API into one dependency:
-    session, JWT scopes and database authorizations, from the
-    <code>action:domain:privilege</code> code each route declares — a
-    route becomes a declaration, not a special case. Extended with
-    impersonation, TOTP 2FA, account blocking and audit of failed
-    attempts.</li>
+    <li>Consolidated the access control of a banking API into one
+    dependency: session validity, permissions (JWT scopes and DB
+    authorizations), root perimeter, individual identity, 2FA
+    certification and read-only state — driven by the
+    <code>action:domain:privilege</code> code each route declares.
+    Adding a route becomes a declaration, not a special case.</li>
     <li>Took over a Spot FX price feed (FIX 4.2 over WebSocket, 56
     currency pairs) where neither the inherited integration nor a
     vendor’s rewrite attempt was salvageable, and rebuilt it against the

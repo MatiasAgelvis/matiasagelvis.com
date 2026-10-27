@@ -118,12 +118,12 @@ PDF</a></p>
     Ingénieur Backend Python (Contractuel)</h2>
     <p><em>Fév. 2025 – Mar. 2026</em></p>
     <ul>
-    <li>Unifié le contrôle d’accès d’une API bancaire dans une
-    dépendance unique : session, scopes JWT et autorisations en base, à
-    partir du code « action:domaine:privilège » déclaré par chaque route
-    — ajouter une route devient une déclaration, pas un cas particulier.
-    Étendu avec l’impersonation, la 2FA TOTP, le blocage de compte et
-    l’audit des tentatives échouées.</li>
+    <li>Fusionné le contrôle d’accès d’une API bancaire en une
+    dépendance unique : validation de session, permissions (scopes JWT
+    et autorisations en base), périmètre de comptes, identité, 2FA et
+    sessions en lecture seule — à partir du code «
+    action:domaine:privilège » déclaré par chaque route. Ajouter une
+    route devient une déclaration, pas un cas particulier.</li>
     <li>Repris un flux de change au comptant (FIX 4.2 sur WebSocket, 56
     paires) dont ni l’intégration existante ni la réécriture d’un
     prestataire n’étaient exploitables, et reconstruit à partir de la

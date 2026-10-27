@@ -71,10 +71,9 @@ fine: a bullet can stop at beat 3 and still be strong.
 **The honest split:** the *schema* predates you by eight months. The *enforcement layer* is
 yours. That is a stronger claim than "my lead designed it", and it's verifiable.
 
-**Numbers, checked in the repo**
+**Numbers, checked in the repo** — supporting detail only, never the headline
 - `authorization.csv` → 135 rows = **135 permissions**, exact
-- `role.csv` → **10 roles**. Your CV says 20. Which is right? If prod had more, say so;
-  if not, fix the CV.
+- `role.csv` → **10 roles** (an earlier "20 roles" figure was wrong; it's not on the CV)
 - `role_authorization.csv` → 344 role→permission mappings
 - code format is `action:domain:privilege`, e.g. `create:access-token:restricted`
 
@@ -84,23 +83,28 @@ refactor. What was missing was a *unified* enforcement path, not a model. And "m
 designed it" is too generous — he and Cyryl built the tables in 2024; you built everything
 that enforces them.
 
+**The claim that matters — not the counts**
+
+The number of roles or permissions is not the story. The story is the **consolidation**:
+`get_current_user` (session) and `AuthorizationChecker` (permissions) were two separate
+dependencies. You merged them into `AccessControl` (Jul 2025), then absorbed the root
+perimeter, individual identity, 2FA certification and read-only state into the same place
+(Mar–May 2026). Five concerns, one dependency, one declaration per route.
+
+Counts are available if asked — 135 permissions, 10 roles in `role.csv` — but they are
+supporting detail, not the headline.
+
 **FR**
-> L'authentification reposait sur des dépendances séparées pour la session et pour les
-> autorisations. J'ai unifié le contrôle d'accès dans une dépendance unique (`AccessControl`)
-> qui valide la session puis, dans le même passage, les scopes JWT et les autorisations en
-> base, à partir du code `action:domaine:privilège` déclaré par chaque route — ajouter une
-> route devient une déclaration, pas un cas particulier. J'ai étendu l'ensemble avec
-> l'impersonation (« Login As »), la 2FA TOTP, le blocage de compte et l'audit des tentatives
-> d'authentification échouées, sur 135 permissions et `[[10 ?]]` rôles.
+> Fusionné le contrôle d'accès d'une API bancaire en une dépendance unique : validation de
+> session, permissions (scopes JWT et autorisations en base), périmètre de comptes,
+> identité, 2FA et sessions en lecture seule — à partir du code « action:domaine:privilège »
+> déclaré par chaque route. Ajouter une route devient une déclaration, pas un cas particulier.
 
 **EN**
-> Authentication was split across separate session and authorization dependencies. I unified
-> access control into a single `AccessControl` dependency that validates the session and, in
-> the same pass, both the JWT scopes and the DB authorizations, against the
-> `action:domain:privilege` code each route declares — so adding a route is a declaration,
-> not a special case. Extended it with impersonation ("Login As"), TOTP 2FA, account
-> blocking, and audit of failed authentication attempts, across 135 permissions and
-> `[[10 ?]]` roles.
+> Consolidated the access control of a banking API into one dependency: session validity,
+> permissions (JWT scopes and DB authorizations), root perimeter, individual identity, 2FA
+> certification and read-only state — driven by the `action:domain:privilege` code each
+> route declares. Adding a route becomes a declaration, not a special case.
 
 If the 2FA, blocking or audit work was shared with colleagues, write "contribué à" for those
 and keep the first person for what was yours alone.
