@@ -8,6 +8,10 @@ Ingénieur logiciel et physicien spécialisé en développement backend Python, 
 Ingénieur logiciel et physicien, spécialisé en modélisation mathématique et optimisation discrète. Je conçois des outils d'aide à la décision — ordonnancement, planification de production — en Python et MiniZinc, et je les mène jusqu'en production : services backend FastAPI, APIs REST, RabbitMQ, MySQL, Docker.
 <!-- /v -->
 
+<!-- v:fintech -->
+Ingénieur backend spécialisé en systèmes financiers. Sur une plateforme bancaire, j'ai reconstruit une intégration FIX 4.2 en production (56 paires de devises) et unifié le contrôle d'accès — sessions, permissions, 2FA. Python asynchrone, FastAPI, RabbitMQ, MySQL.
+<!-- /v -->
+
 # Expérience
 
 ## Margaux Systems — Fondateur, Recherche Opérationnelle
@@ -18,10 +22,11 @@ Ingénieur logiciel et physicien, spécialisé en modélisation mathématique et
 ## SNAPP' — Ingénieur Backend Python (Contractuel)
 *Fév. 2025 – Mar. 2026*
 
-- Unifié le contrôle d'accès d'une API bancaire dans une dépendance unique : session, scopes JWT et autorisations en base, à partir du code « action:domaine:privilège » déclaré par chaque route — ajouter une route devient une déclaration, pas un cas particulier. Étendu avec l'impersonation, la 2FA TOTP, le blocage de compte et l'audit des tentatives échouées. <!-- v:backend,fintech -->
+- Fusionné le contrôle d'accès d'une API bancaire en une dépendance unique : validation de session, permissions (scopes JWT et autorisations en base), périmètre de comptes, identité, 2FA et sessions en lecture seule — à partir du code « action:domaine:privilège » déclaré par chaque route. Ajouter une route devient une déclaration, pas un cas particulier. <!-- v:backend,fintech -->
 - Repris un flux de change au comptant (FIX 4.2 sur WebSocket, 56 paires) dont ni l'intégration existante ni la réécriture d'un prestataire n'étaient exploitables, et reconstruit à partir de la spécification : codec, cycle de vie des sessions, reconnexion avec réabonnement, normalisation des prix. Architecture asynchrone mono-thread, pour que l'ordre des messages reste déterministe ; le flux se rétablit seul après une coupure.
 - Conception d'APIs REST asynchrones FastAPI et de middlewares d'authentification, services communiquant via RabbitMQ RPC, sur trois bases MySQL (SQLAlchemy, Alembic) avec suite de tests pytest.
-- Co-conception du moteur de traitement des demandes : workflows typés, audit, documents et messagerie interne.
+- Développé les modules métier de la même plateforme : change au comptant et ordres permanents, taux BCE, positions et transactions titres (Swissquote, Moventum), soldes et mouvements de comptes. <!-- v:fintech -->
+- Co-conception du moteur de traitement des demandes : workflows typés, audit, documents et messagerie interne. <!-- v:backend -->
 
 ## SIAL — Technicien de Laboratoire
 *Mar 2024 – Mar 2025*
