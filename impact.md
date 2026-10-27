@@ -112,6 +112,17 @@ and keep the first person for what was yours alone.
 
 ---
 
+## Calibration — what the job actually was
+
+Most of the volume was CRUD over a large domain: 200+ endpoints across three databases, with
+migrations, tests and RPC boundaries. The other engineers did the same, and so did you.
+
+Two things were not CRUD: the FIX 4.2 rebuild and the access-control unification. Those are
+the parts worth talking about, and they are why the CV has four bullets instead of forty.
+
+Never let it collapse into either extreme. "I architected the platform" is false. "It was
+just CRUD" is equally false, and it's the one you'll reach for when you're tired.
+
 ## 3. Margaux Systems
 
 **Confirmed**
@@ -239,6 +250,8 @@ forced read-only, with an X-Real-IP check on the caller.
 - any claim of a test suite on the FIX work — you were directed to ship without one
 - sole design credit for the authorization model — the tables predate you (Oct 2024);
   the enforcement layer is yours
+- design credit for the API surface — you implemented the endpoints, you did not design
+  them. "Développé", not "conçu". Same for the securities schema.
 - "just a simple bearer token" — an `AuthorizationChecker` and the tables already existed
 - anything implying you built trading, settlement or custody logic — you modelled and
   transported the data

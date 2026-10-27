@@ -12,9 +12,9 @@ Software engineer and physicist specializing in Python backend development, API 
 ## SNAPP' — Python Backend Engineer (Contractor)
 *Feb 2025 – Mar 2026*
 
-- Consolidated the access control of a banking API into one dependency: session validity, permissions (JWT scopes and DB authorizations), root perimeter, individual identity, 2FA certification and read-only state — driven by the `action:domain:privilege` code each route declares. Adding a route becomes a declaration, not a special case. <!-- v:backend,fintech -->
 - Took over a Spot FX price feed (FIX 4.2 over WebSocket, 56 currency pairs) where neither the inherited integration nor a vendor's rewrite attempt was salvageable, and rebuilt it against the protocol spec: codec, session lifecycle, reconnect-with-resubscription, price normalization. Single-threaded async, so message ordering stays deterministic; the feed recovers from a dropped connection on its own.
-- Designed asynchronous FastAPI REST services and authentication middleware, services communicating over RabbitMQ RPC, backed by three MySQL databases (SQLAlchemy, Alembic) and a pytest suite.
+- Consolidated the access control of a banking API into one dependency: session validity, permissions (JWT scopes and DB authorizations), root perimeter, individual identity, 2FA certification and read-only state — driven by the `action:domain:privilege` code each route declares. Adding a route becomes a declaration, not a special case. <!-- v:backend,fintech -->
+- Built 200+ REST endpoints (FastAPI, SQLAlchemy, Pydantic), the authentication middleware and the RabbitMQ/RPC services to external banking systems, across three MySQL databases with Alembic migrations and a pytest suite.
 - Co-built the request-processing engine: typed workflows, audit trail, documents, and internal messaging.
 
 ## SIAL — Laboratory Technician
