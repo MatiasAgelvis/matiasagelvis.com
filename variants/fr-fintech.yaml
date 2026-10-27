@@ -1,0 +1,21 @@
+# Targeted variant: banking / fintech.
+# Not in the nav, not in the sitemap, noindex — a delivery vehicle, not an identity.
+
+slug: fr-fintech
+source: cv-fr.md
+marker: fintech
+lang: fr
+
+title: Ingénieur Backend — Systèmes Financiers
+description: "Ingénieur backend spécialisé en systèmes financiers : intégration FIX 4.2, contrôle d'accès bancaire, Python asynchrone et APIs."
+
+path: fr/cv/fintech
+pdf: Matias-Agelvis-CV-Fintech.pdf
+download-text: "⬇ Télécharger le PDF"
+
+back-url: ../index.html
+back-text: "← retour au CV"
+en-href: ../../../cv/index.html
+fr-href: ../index.html
+
+noindex: true
