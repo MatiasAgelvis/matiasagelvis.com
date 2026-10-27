@@ -24,7 +24,7 @@ Ingénieur backend spécialisé en systèmes financiers. Sur une plateforme banc
 
 - Repris un flux de change au comptant (FIX 4.2 sur WebSocket, 56 paires) dont ni l'intégration existante ni la réécriture d'un prestataire n'étaient exploitables, et reconstruit à partir de la spécification : codec, cycle de vie des sessions, reconnexion avec réabonnement, normalisation des prix. Architecture asynchrone mono-thread, pour que l'ordre des messages reste déterministe ; le flux se rétablit seul après une coupure.
 - Fusionné le contrôle d'accès d'une API bancaire en une dépendance unique : validation de session, permissions (scopes JWT et autorisations en base), périmètre de comptes, identité, 2FA et sessions en lecture seule — à partir du code « action:domaine:privilège » déclaré par chaque route. Ajouter une route devient une déclaration, pas un cas particulier. <!-- v:backend,fintech -->
-- Développé plus de 200 endpoints REST (FastAPI, SQLAlchemy, Pydantic), les middlewares d'authentification et les services RabbitMQ/RPC vers les systèmes bancaires, sur trois bases MySQL avec migrations Alembic et suite de tests pytest.
+- Développé plus de 200 endpoints REST (FastAPI, SQLAlchemy, Pydantic) et les services RabbitMQ/RPC vers les systèmes bancaires, sur trois bases MySQL avec migrations Alembic et suite de tests pytest.
 - Implémenté les endpoints et le transport des données de positions et transactions titres (Swissquote, Moventum) et des taux BCE : ORM, migrations, REST et RabbitMQ vers la plateforme de l'établissement. <!-- v:fintech -->
 - Développé le moteur de traitement des demandes : workflows typés, audit, documents et messagerie interne. <!-- v:backend -->
 
