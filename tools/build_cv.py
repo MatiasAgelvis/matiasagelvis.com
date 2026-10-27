@@ -20,10 +20,12 @@ one-page rule is enforced by build_pdf.py, so every variant inherits it.
 
 from __future__ import annotations
 
+import html
 import re
 import shutil
 import subprocess
 import sys
+from datetime import date
 from pathlib import Path
 
 import yaml
@@ -136,11 +138,132 @@ def build(variant_path: Path) -> dict[str, str]:
         run([sys.executable, "build_pdf.py", str(print_html), str(pdf)])
         shutil.copy(pdf, out_dir / pdf_name)
 
+    path = meta["path"]
+    page_url = "/" if path == "." else f"/{path}/"
+
     return {
         "slug": slug,
+        "lang": meta["lang"],
+        "marker": marker,
+        "source": source_name or "—",
+        "template": template,
         "page": str((out_dir / "index.html").relative_to(ROOT)),
+        "url": page_url,
         "pdf": f"pdf/{pdf_name}" if pdf_name else "—",
+        "pdf_url": f"{page_url}{pdf_name}" if pdf_name else None,
+        "indexable": not meta.get("noindex", False),
     }
+
+
+STATIC_ROUTES = [
+    ("/robots.txt", "crawler rules, points at the sitemap"),
+    ("/sitemap.xml", "canonical pages only — variants are excluded on purpose"),
+    ("/web.css", "shared stylesheet, copied from styles/web.css"),
+    ("/routes/", "this page — noindex, not linked from anywhere"),
+]
+
+
+def write_index(rows: list[dict]) -> None:
+    """Write /routes/ — an unlisted inventory of everything the build emits."""
+    out = SITE / "routes"
+    out.mkdir(parents=True, exist_ok=True)
+
+    def rel(url: str) -> str:
+        return ".." + url  # /routes/ -> site root
+
+    body = []
+    for row in rows:
+        if row["pdf_url"]:
+            name = row["pdf_url"].rsplit("/", 1)[-1]
+            pdf_cell = f'<a href="{rel(row["pdf_url"])}">{html.escape(name)}</a>'
+        else:
+            pdf_cell = '<span class="muted">—</span>'
+        flag = "indexable" if row["indexable"] else '<span class="no">noindex</span>'
+        body.append(
+            "      <tr>"
+            f'<td><code>{html.escape(row["slug"])}</code></td>'
+            f'<td>{html.escape(row["lang"])}</td>'
+            f'<td><code>{html.escape(row["marker"])}</code></td>'
+            f'<td><code>{html.escape(row["source"])}</code></td>'
+            f'<td><a href="{rel(row["url"])}">{html.escape(row["url"])}</a></td>'
+            f"<td>{pdf_cell}</td>"
+            f"<td>{flag}</td>"
+            "</tr>"
+        )
+
+    static = "\n".join(
+        f'      <tr><td><code>{html.escape(path)}</code></td>'
+        f'<td colspan="3">{html.escape(note)}</td></tr>'
+        for path, note in STATIC_ROUTES
+    )
+
+    page = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Routes</title>
+  <style>
+    body {{
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      max-width: 60rem; margin: 0 auto; padding: 2rem 1.25rem 4rem;
+      color: #1f2328; line-height: 1.55;
+    }}
+    h1 {{ font-size: 1.4rem; margin: 0 0 0.2rem; }}
+    h2 {{ font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em;
+         color: #57606a; margin: 2rem 0 0.5rem; border-bottom: 1px solid #d0d7de;
+         padding-bottom: 0.2rem; }}
+    p.lead {{ color: #57606a; margin: 0 0 1.5rem; font-size: 0.9rem; }}
+    table {{ width: 100%; border-collapse: collapse; font-size: 0.85rem; }}
+    th {{ text-align: left; font-weight: 600; color: #57606a; font-size: 0.75rem;
+         text-transform: uppercase; letter-spacing: 0.04em;
+         border-bottom: 1px solid #d0d7de; padding: 0.4rem 0.5rem; }}
+    td {{ padding: 0.4rem 0.5rem; border-bottom: 1px solid #eaeef2; vertical-align: top; }}
+    code {{ background: #f6f8fa; border-radius: 4px; padding: 0.05rem 0.3rem; font-size: 0.85em; }}
+    a {{ color: #0969da; text-decoration: none; }}
+    a:hover {{ text-decoration: underline; }}
+    .muted {{ color: #8b949e; }}
+    .no {{ color: #9a6700; }}
+    .note {{ background: #f6f8fa; border-left: 3px solid #d0d7de; padding: 0.75rem 1rem;
+            font-size: 0.85rem; color: #57606a; margin-top: 1rem; }}
+    .note code {{ background: #fff; }}
+  </style>
+</head>
+<body>
+  <h1>Routes</h1>
+  <p class="lead">Everything the build emits, generated from <code>variants/*.yaml</code> on {date.today().isoformat()}. Not linked, not indexed.</p>
+
+  <h2>Generated pages</h2>
+  <table>
+    <thead>
+      <tr><th>slug</th><th>lang</th><th>marker</th><th>source</th><th>url</th><th>pdf</th><th>crawl</th></tr>
+    </thead>
+    <tbody>
+{chr(10).join(body)}
+    </tbody>
+  </table>
+
+  <h2>Static files</h2>
+  <table>
+    <thead>
+      <tr><th>path</th><th colspan="3">what it is</th></tr>
+    </thead>
+    <tbody>
+{static}
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>To add a page:</strong> drop a file in <code>variants/</code> with
+    <code>slug</code>, <code>source</code> (optional), <code>template</code> (optional),
+    <code>lang</code>, <code>path</code>, and <code>pdf</code> (optional). Run <code>make</code>.
+    Set <code>noindex: true</code> for anything targeted rather than public.
+  </div>
+</body>
+</html>
+"""
+    (out / "index.html").write_text(page)
 
 
 def main() -> None:
@@ -160,6 +283,9 @@ def main() -> None:
     print("\nBuilt:")
     for b in built:
         print(f"  {b['slug']:<{width}}  {b['page']:<{page_width}}  {b['pdf']}")
+
+    write_index(built)
+    print("  routes   site/routes/index.html")
 
 
 if __name__ == "__main__":
