@@ -22,15 +22,15 @@ Software engineer and physicist specializing in Python backend development, API 
 
 - Laboratory testing, sample preparation, and experimental data management.
 
-## Independent Software Development
-*Oct 2022 – Mar 2024*
+## Independent Developer
+*Jul 2019 – Mar 2024*
 
-- Built and deployed web applications and software tools as self-directed projects; several are listed under Selected Projects.
+- Web applications then software tools, self-directed; several are listed under Selected Projects.
 
-## Frontend Developer — Remote
+## RENYT Tech — Frontend Developer
 *Mar 2022 – Oct 2022*
 
-- Built responsive web application features with React, Next.js, TypeScript, and Chakra UI.
+- Web application features with React, Next.js, TypeScript, and Chakra UI.
 
 # Education
 
@@ -38,6 +38,8 @@ Software engineer and physicist specializing in Python backend development, API 
 *Mérida, Venezuela — 2018*
 
 Background in mathematical modeling and computational methods; moved into software engineering through 70+ self-directed courses in algorithms, architecture, compilers, discrete optimization, and machine learning.
+
+**Research Assistant — Nonlinear Dynamics Group** (2017–2018): data analysis, literature reviews, and publications.
 
 # Skills
 
@@ -57,6 +59,4 @@ Background in mathematical modeling and computational methods; moved into softwa
 
 [**Starisk**](https://starisk.matiasagelvis.com) — Course ratings recomputed from the most-upvoted reviews: dependency-free Python crawler and scorer, vote weighting by square root, calibrated against a human ranking (ρ = 0.70 vs 0.42). 426 courses, Astro site.
 
-[**Significado Total**](https://semioteca.vercel.app) — Linguistics research application built with Python and Svelte
-
-[**OmegaInt**](https://github.com/matiasagelvis/omegaint) — Arbitrary-precision integer library in C++
+[**Significado Total**](https://semioteca.vercel.app) — Semiotics archive of 2,709 cards: extraction pipeline (ODT → DOCX → text, card-boundary and footnote detection), automatic tagging via zero-shot NLI and multilingual embeddings, static SvelteKit site with full-text search.
