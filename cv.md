@@ -7,15 +7,14 @@ Software engineer and physicist specializing in Python backend development, API 
 ## Margaux Systems — Founder, Operations Research
 *Mar 2026 – Present*
 
-- Building optimization and decision-support tooling for manufacturing scheduling and production planning, documented as published case studies.
-- Modelling scheduling problems in Python and MiniZinc, with simulations to evaluate operational scenarios.
+- Independent R&D in operations research: scheduling and production-planning models in Python and MiniZinc, documented as published case studies; direct outbound prospecting to manufacturers.
 
 ## SNAPP' — Python Backend Engineer (Contractor)
 *Feb 2025 – Mar 2026*
 
-- Owned the identity and access layer of a banking platform: JWT sessions, role-based access control (20 roles, 135 permissions), and multi-channel 2FA with login lockout.
-- Rebuilt the FIX 4.2 integration end to end — protocol codec, WebSocket transport, session lifecycle, reconnection with resubscription — and served live FX pair state over HTTP.
-- Designed asynchronous FastAPI REST services and authentication/authorization middleware over RabbitMQ RPC, backed by three MySQL databases (SQLAlchemy, Alembic) and a pytest suite.
+- Unified the access control of a banking API into one dependency: session, JWT scopes and database authorizations, from the `action:domain:privilege` code each route declares — a route becomes a declaration, not a special case. Extended with impersonation, TOTP 2FA, account blocking and audit of failed attempts. <!-- v:backend,fintech -->
+- Took over a Spot FX price feed (FIX 4.2 over WebSocket, 56 currency pairs) where neither the inherited integration nor a vendor's rewrite attempt was salvageable, and rebuilt it against the protocol spec: codec, session lifecycle, reconnect-with-resubscription, price normalization. Single-threaded async, so message ordering stays deterministic; the feed recovers from a dropped connection on its own.
+- Designed asynchronous FastAPI REST services and authentication middleware, services communicating over RabbitMQ RPC, backed by three MySQL databases (SQLAlchemy, Alembic) and a pytest suite.
 - Co-built the request-processing engine: typed workflows, audit trail, documents, and internal messaging.
 
 ## SIAL — Laboratory Technician
@@ -56,12 +55,8 @@ Background in mathematical modeling and computational methods; moved into softwa
 
 # Selected Projects
 
-[**OmegaInt**](https://github.com/matiasagelvis/omegaint) — Arbitrary-precision integer library in C++
-
-[**CellSV**](https://matiasagelvis.github.io/cellsv) — High-performance XML-to-CSV conversion tool
+[**Starisk**](https://starisk.matiasagelvis.com) — Course ratings recomputed from the most-upvoted reviews: dependency-free Python crawler and scorer, vote weighting by square root, calibrated against a human ranking (ρ = 0.70 vs 0.42). 426 courses, Astro site.
 
 [**Significado Total**](https://semioteca.vercel.app) — Linguistics research application built with Python and Svelte
 
-[**Kumigi**](https://kumigi.vercel.app) — Web-based avatar designer
-
-[**Warkdown-98**](https://matiasagelvis.github.io/Warkdown-98/) — Windows 98-themed markdown editor running in the browser, built with React and Vite
+[**OmegaInt**](https://github.com/matiasagelvis/omegaint) — Arbitrary-precision integer library in C++

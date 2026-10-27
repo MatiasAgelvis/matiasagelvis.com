@@ -56,41 +56,55 @@ fine: a bullet can stop at beat 3 and still be strong.
 
 ## 2. Authorization layer
 
-**Confirmed**
-- Before: a plain bearer token. The permission model was designed by your lead and
-  partially, poorly implemented by the bank.
-- You implemented that model and extended it.
-- Permissions as `(domain, action, privilege)` rows, granted through roles, carried
-  as JWT scopes, enforced by one middleware that checks the tuple each route declares
-- 20 roles, 135 permissions
-- Added: session revocation, account blocking, multi-channel 2FA (SMS via Sinch, then
-  Authy), per-role session limits, audit of failed authentications, IP allow-listing
+**Git evidence** — `amfie-api`, 111 commits tagged `(auth)`, **95 of them yours**.
 
-**Attribution matters.** Do not write "j'ai conçu". You implemented a design that was
-your lead's, on top of a bad partial implementation. In an interview that version is
-*more* credible, not less — and it survives a call to the lead.
+| Date | What | Whose |
+|---|---|---|
+| Oct 2024 | `role`, `authorization`, `role_authorization` CSVs + migration — the data model | Cyryl Balma Tivola, Julien Hertout |
+| Jul 2025 | `AccessControl`: one dependency checking session **and** authorization, hybrid JWT-scope + DB lookup | you |
+| Jul 2025 | `AuthorizationOperations`, `AuthorizationPayload`, custom session authorizations | you |
+| Oct 2025 | privilege sweep across every domain (`any` / `restricted` / `internal`) | you |
+| Oct 2025 | impersonation — "Login As" endpoint | you |
+| Jan–Mar 2026 | 2FA: TOTP, account blocking, audit of failed attempts, `TwoFactorAuthProcessor` | you |
+| Jun 2026 | localized auth errors, no identifier leak on a bad OTP | you |
 
-You said "we added" for the extensions. If the 2FA, blocking or audit work was shared
-with colleagues, write "contribué à" for those and keep the first person for what was
-yours alone.
+**The honest split:** the *schema* predates you by eight months. The *enforcement layer* is
+yours. That is a stronger claim than "my lead designed it", and it's verifiable.
+
+**Numbers, checked in the repo**
+- `authorization.csv` → 135 rows = **135 permissions**, exact
+- `role.csv` → **10 roles**. Your CV says 20. Which is right? If prod had more, say so;
+  if not, fix the CV.
+- `role_authorization.csv` → 344 role→permission mappings
+- code format is `action:domain:privilege`, e.g. `create:access-token:restricted`
+
+**Two claims to drop.** "Just a simple bearer token" doesn't survive the repo: an
+`AuthorizationChecker` dependency and the authorization tables already existed before your
+refactor. What was missing was a *unified* enforcement path, not a model. And "my lead
+designed it" is too generous — he and Cyryl built the tables in 2024; you built everything
+that enforces them.
 
 **FR**
-> Repris l'authentification d'une API bancaire qui n'était qu'un simple jeton bearer,
-> en mettant en œuvre le modèle de permissions défini par le lead : permissions en
-> (domaine, action, privilège), portées par des rôles et transmises en scopes JWT,
-> vérifiées par un middleware unique à partir du tuple déclaré par chaque route —
-> ajouter une route devient une déclaration, pas un cas particulier. Étendu avec la
-> révocation de session, le blocage de compte, la 2FA multi-canal, les limites de
-> session par rôle et l'audit des authentifications échouées.
+> L'authentification reposait sur des dépendances séparées pour la session et pour les
+> autorisations. J'ai unifié le contrôle d'accès dans une dépendance unique (`AccessControl`)
+> qui valide la session puis, dans le même passage, les scopes JWT et les autorisations en
+> base, à partir du code `action:domaine:privilège` déclaré par chaque route — ajouter une
+> route devient une déclaration, pas un cas particulier. J'ai étendu l'ensemble avec
+> l'impersonation (« Login As »), la 2FA TOTP, le blocage de compte et l'audit des tentatives
+> d'authentification échouées, sur 135 permissions et `[[10 ?]]` rôles.
 
 **EN**
-> Took over the authentication of a banking API that was a plain bearer token,
-> implementing the permission model my lead had designed: permissions as
-> `(domain, action, privilege)` rows, granted through roles, carried as JWT scopes,
-> and enforced by a single middleware that checks the tuple each route declares — so
-> adding a route is a declaration, not a special case. Extended it with session
-> revocation, account blocking, multi-channel 2FA, per-role session limits, and audit
-> of failed authentications.
+> Authentication was split across separate session and authorization dependencies. I unified
+> access control into a single `AccessControl` dependency that validates the session and, in
+> the same pass, both the JWT scopes and the DB authorizations, against the
+> `action:domain:privilege` code each route declares — so adding a route is a declaration,
+> not a special case. Extended it with impersonation ("Login As"), TOTP 2FA, account
+> blocking, and audit of failed authentication attempts, across 135 permissions and
+> `[[10 ?]]` roles.
+
+If the 2FA, blocking or audit work was shared with colleagues, write "contribué à" for those
+and keep the first person for what was yours alone.
+
 
 ---
 
@@ -118,6 +132,69 @@ yours alone.
 
 ---
 
+## Auth, in one page (interview refresher)
+
+**The question it answers:** which user can call which route, on which data.
+
+**The model** — three tables, created Oct 2024, before you joined
+- `role` — 10 roles (`member`, `admin_ext`, `it_staff`, `compliance_manager`, …)
+- `authorization` — 135 rows, one per permission
+- `role_authorization` — 344 rows, which role grants which permission
+- a permission's identity is a string, `domain:action:privilege`, e.g. `beneficiary:create:restricted`
+
+**At login** (`SessionService.create_session`)
+1. compute the user's root perimeter, and whether the session must be read-only
+   (HOLD on a BLOCKED root, or impersonation)
+2. derive the effective authorizations: explicit (password reset), or read-only → only
+   active+read, otherwise everything the user holds
+3. bake them into the JWT as `scopes`
+4. create a session row keyed by the token's JTI
+
+**On every request** (`AccessControl.__call__`, one dependency)
+1. is the session active?
+2. read-only session hitting a non-read route? → 403 + a log line
+3. required codes ⊆ token scopes? → otherwise 401/403, localized
+4. `root_number` in the session's roots?
+5. `individual_id` matches the session's user?
+6. 2FA certified, if the route requires it
+7. touch `last_activity`
+
+**Why "hybrid":** the DB is the source of truth at login; the JWT is the fast path per
+request — no join per permission check. Revocation invalidates the session (JTI lookup),
+it doesn't rewrite tokens.
+
+**Declaring a route**
+```python
+dependencies=[Depends(AccessControl([AuthorizationForRoute(
+    auth_domain=AuthorizationDomain.beneficiary,
+    auth_action=AuthorizationAction.create,
+    auth_privilege=AuthorizationPrivilege.restricted,
+)]))]
+```
+
+**The `restricted` / `any` trap — the one to remember**
+- The words read backwards. `restricted` sounds like admin-only; it is the *member* level.
+  `any` sounds like everyone; it is the *admin / broad* level.
+- The functional difference: privilege is part of the permission **string**, so
+  `country:read:any` and `country:read:restricted` are two different permissions. A role
+  granted one does not satisfy a route declaring the other — silent 403.
+- It also drives the 2FA default: `any` / `internal` → no 2FA; `restricted` → 2FA required
+  unless the route overrides.
+- That's why the inversion was expensive: it fails as an authorization mismatch, not as a
+  crash, so nothing tells you the name is wrong.
+
+**2FA** (yours, Jan–Mar 2026)
+- second factor after the password: OTP by SMS (Sinch), then authenticator app (Authy/TOTP)
+- `UserDoubleAuthAttempt` records attempts for audit
+- blocked accounts are rejected immediately in TOTP flows
+- `TwoFactorAuthProcessor` centralises OTP validation
+- sessions carry `is_double_auth_certified`, enforced per route by `AccessControl`
+
+**Impersonation** ("Login As", Oct 2025) — issues a session for the impersonated user,
+forced read-only, with an X-Real-IP check on the caller.
+
+---
+
 ## What to do with this
 
 - These three bullets are the raw material for `cv.md` / `cv-fr.md`.
@@ -131,6 +208,7 @@ yours alone.
 - "I worked for free" / "16-hour days" — interview story about judgment, not a CV line
 - hour totals — the tracked hours are sold volume, not hours worked
 - any claim of a test suite on the FIX work — you were directed to ship without one
-- sole design credit for the authorization model — your lead designed it, you
-  implemented and extended it
+- sole design credit for the authorization model — the tables predate you (Oct 2024);
+  the enforcement layer is yours
+- "just a simple bearer token" — an `AuthorizationChecker` and the tables already existed
 - the client bank's name — under a one-year non-solicitation, until roughly March 2027
