@@ -23,5 +23,5 @@ serve: all
 
 clean:
 	rm -rf build pdf
-	rm -rf site/cv site/fr/cv
+	rm -rf site/cv site/fr/cv site/routes
 	rm -f site/web.css
