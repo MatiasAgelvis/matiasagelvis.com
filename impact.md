@@ -136,6 +136,31 @@ and keep the first person for what was yours alone.
 
 ---
 
+## 4. Securities / custody integrations (fintech variant only)
+
+**What it actually was:** CRUD plus transport, over a schema you did not design — it came
+from the client, or from a collaboration between your lead and their liaison. The trades
+were executed by the bank; nothing about market logic, settlement or custody rules was in
+scope. The flow was: client → our database → RPC/RabbitMQ → the bank's main platform.
+
+**Confirmed**
+- Swissquote: accounts, positions, trades
+- Moventum: positions, transactions, notices
+- BCE rates: parameters and per-currency retrieval
+- forex standing orders, balances, movements
+
+**FR**
+> Implémenté les endpoints et le transport des données de positions et transactions titres
+> (Swissquote, Moventum) et des taux BCE : ORM, migrations, REST et RabbitMQ vers la
+> plateforme de l'établissement.
+
+**Why it still belongs on a fintech CV:** it shows you can carry a third party's data across
+a system boundary — schema, ORM, migrations, endpoints, transport — without losing it. That
+is most of what bank integration is. Just never let the verb drift to "modelled" (you
+didn't) or "built the trading system" (you didn't).
+
+---
+
 ## Auth, in one page (interview refresher)
 
 **The question it answers:** which user can call which route, on which data.
@@ -215,4 +240,6 @@ forced read-only, with an X-Real-IP check on the caller.
 - sole design credit for the authorization model — the tables predate you (Oct 2024);
   the enforcement layer is yours
 - "just a simple bearer token" — an `AuthorizationChecker` and the tables already existed
+- anything implying you built trading, settlement or custody logic — you modelled and
+  transported the data
 - the client bank's name — under a one-year non-solicitation, until roughly March 2027
