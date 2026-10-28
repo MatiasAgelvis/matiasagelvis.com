@@ -97,7 +97,8 @@ def build(variant_path: Path) -> dict[str, str]:
     source_name = meta.pop("source", None)
     marker = meta.pop("marker", "default")
     template = meta.pop("template", "templates/cv.html")
-    pdf_name = meta.pop("pdf", None)
+    # Keep `pdf` in the metadata: templates/cv.html links it as $pdf$.
+    pdf_name = meta.get("pdf")
     meta[f"{meta['lang']}-active"] = True
 
     BUILD.mkdir(exist_ok=True)
